@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: Thuong
- * Date: 4/5/14
- * Time: 11:08 AM
- * To change this template use File | Settings | File Templates.
- */
 
 function information_process_admin() {
     global $smarty, $function;

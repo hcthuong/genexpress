@@ -17,7 +17,7 @@ function homepage(){
 }
 // Client
 function homepageclient(){
-	global $db, $smarty, $function,$template;
+	global $smarty, $function,$template;
 	
 	$oProduct = new Product();
 	$all_product = $oProduct->show_all_product_for_carousel();
