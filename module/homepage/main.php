@@ -28,7 +28,7 @@ function homepageclient(){
 	return $smarty->fetch($template."/index.html");
 }
 function closesite(){
-	global $db, $smarty, $function, $disable_message;
+	global $smarty, $function, $disable_message;
 	$smarty->assign("disable_message",$disable_message);
 	return $smarty->fetch("close_site.html");
 }
