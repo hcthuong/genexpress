@@ -1,0 +1,89 @@
+<div id="bgwrap">		
+				<!-- Main Content -->
+				<div id="content">
+					<div id="main">
+						<h1>Quản lý quản trị viên</h1>        
+				<form name="frm_admin" method="POST">
+				<table class="fullwidth" border="0" cellpadding="0" cellspacing="0">					
+					<tbody>
+				 {if $rs}
+					<thead><tr><td width="15" align="center"></td>
+						<td align=""><b>Tên đăng nhập </b></td>
+						<td align=""><b>Quyền</b></td>    
+						<td align=""><b>Chức năng</b></td>              
+						<td align="center"><b>Thao tác</b></td>
+					</tr></thead>
+			  {section name=rs loop=$rs}
+			 <tr bgcolor={cycle values="#FFFFFF,#EEEEEE"}>
+				<td  width="15" align="center">{if $rs[rs].IsAdmin neq 1}<input type="checkbox" class="checkall" name="check_del[]" value="{$rs[rs].Admin_ID}" />{/if}</td>    
+				<td  >{$rs[rs].Admin_Login}</td>
+				<td  >{if $rs[rs].IsAdmin eq 1}Quản trị cao nhất{else}Quản trị viên{/if}</td>
+				<td width="200px">{if $rs[rs].IsAdmin eq 1}Tất cả
+					{else}				
+						<table class="datatable"   width="100%">
+						{section name=admin_module loop=$admin_module[rs]}				
+							<tr bgcolor="{if $smarty.section.admin_module[rs].iteration % 2 eq 1}#EEEEEE{else}#FFFFFF{/if}">
+								<td width="80%">	
+									{$admin_module[rs][admin_module].Module_Name}	
+								</td>
+								<td width="20%" align="center">	
+									<a href="?module=cms&a=remove_role&roleid={$admin_module[rs][admin_module].Roles_ID}" alt="Xóa" title="Xóa"><img border="0" src="images/icodelete.gif" /></a>
+								</td>
+							</tr>				
+						{/section }			
+						</table>
+						{if $rs[rs].num eq 0}	
+							Chưa đuợc cấp quyền
+						{/if}
+					{/if}</td> 
+      
+    <td align="center" width="150" ><a href="?module=cms&a=edit_admin&id={$rs[rs].Admin_ID}" title="Cập nhật thông tin" alt="Cập nhật thông tin">Cập nhật</a>
+		{if $rs[rs].IsAdmin neq 1 && $rs[rs].num neq $all_module} - <a href="?module=cms&a=add_role&id={$rs[rs].Admin_ID}"  title="Cấp quyền" alt="Cấp quyền">Cấp quyền</a>{/if}
+	</td>
+  </tr>
+  {/section}
+ {else}
+ <tr><td class="err">Thông tin đang được cập nhật</td></tr>
+ {/if} 
+</table></tbody>
+<div ><input type="button" name="btn_del" class="button" value="Xóa" onClick="del_admin('frm_admin');" />
+  <input name="btnAddNew" type="button" value="Thêm" class="button" onclick="window.location='index.php?module=cms&a=add_admin'"/>
+</div></form>
+</div>
+</div>
+{literal}
+	<script type="text/javascript" charset="utf-8">
+	      
+function del_admin(frmName)
+{
+	var frm = document.forms[frmName];
+	var items = document.getElementsByName("check_del[]");
+	var enable = false;
+	for (var i=0; i<items.length; i++)
+	{
+		if (items[i].checked==true)
+		{
+			enable = true;
+			break;
+		}
+	}
+		if (frm && enable)
+			{
+				$.prompt('Bạn muốn xóa tài khoản này?',{ 
+					buttons:{Ok:true, Cancel:false},
+					callback: function(v,m){
+				
+					if(v){
+					frm.action = "?module=cms&a=del_admin";
+					frm.submit();
+					}
+					else{}
+					}
+			});
+	}
+	else
+		frm.onclick = $.prompt('Vui lòng chọn tài khoản bạn muốn xóa!!!');		
+	return false;
+}
+</script>
+{/literal}

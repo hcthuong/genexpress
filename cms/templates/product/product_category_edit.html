@@ -1,0 +1,63 @@
+<!-- Background wrapper -->
+			<div id="bgwrap">		
+				<!-- Main Content -->
+				<div id="content">
+					<div id="main">
+						<h1>Cập nhật thông tin danh mục</h1>
+							<div class="pad20">
+					<!-- Big buttons -->
+							<form name="frm_product_category_edit" method="post" enctype="multipart/form-data" onSubmit="return check_value(frm_product_category_edit);">
+							<!-- Fieldset -->
+							<fieldset>   
+							<legend>Thông tin</legend>
+								<p><label for="sf">Tên danh mục: </label>
+									<input type="text" class="mf"  name="category_name" id="category_name" value="{$show_category.Category_Name}" maxlength="200"/><font color="#FF0000"><b>*</b></font>
+								</p>
+                                <p><label for="sf">Tên danh mục (tiếng Anh): </label>
+									<input type="text" class="mf"  name="category_name_en" id="category_name_en" value="{$show_category.Category_Name_EN}" maxlength="200"/><font color="#FF0000"><b>*</b></font>
+								</p>
+								<p><label for="sf" style="vertical-align:top" >Thuộc danh mục sản phẩm: </label>
+									<select id="cat" name="cat">
+									<option value="0">--- Chọn danh mục ---</option>
+									 {foreach name=list_category_parent from=$list_category_parent item=list_category_parent}
+									<option value="{$list_category_parent.Category_ID}" {if $show_category.Parent_ID eq $list_category_parent.Category_ID} selected="selected"{/if}>{$list_category_parent.Category_Name}</option>										
+									{/foreach}
+								</select>
+								</p>
+                                <p><label for="sf" style="vertical-align:top" >Thuộc danh mục giới thiệu: </label>
+                                    <select name="infor_prodcat" id="infor_prodcat">
+                                        <option value="0">--- Chọn danh mục ---</option>
+                                        {section name="inc" loop=$list_infor_cat}
+                                        <option value="{$list_infor_cat[inc].InCat_ID}" {if $list_infor_cat[inc].InCat_ID eq $show_category.Information_ProductCat} selected="selected"{/if}>{$list_infor_cat[inc].Name}</option>
+                                        {/section}
+                                    </select>
+                                    <font color="#FF0000"><b>*</b></font>
+                                </p>
+								<p>								
+									<input type="submit" class="button"  name="submit" value="Cập nhật"/>
+								</p>		  
+							</fieldset>
+								<!-- End of fieldset -->		
+							</form>
+							</div> 
+					</div>
+				</div>
+{literal}
+<script language="javascript">
+function check_value(form)
+{
+	if(form.category_name.value=="")
+	{
+		form.onclick = $.prompt('Vui l&ograve;ng nh&#7853;p tên danh mục!!!');
+		form.category_name.focus();
+		return false;
+	}
+    if(form.infor_prodcat.value== 0)
+    {
+        form.onclick = $.prompt('Vui lòng cho biết danh mục sản phẩm này thuộc về danh mục giới thiệu nào???');
+        form.infor_prodcat.focus();
+        return false;
+    }
+}
+</script> 
+{/literal}

@@ -1,0 +1,214 @@
+<script type="text/javascript" src="../jscripts/jquery.boxy.js"></script>
+<link rel="stylesheet" href="css/boxy.css" type="text/css" />
+{literal}
+<script type="text/javascript">
+function setCheckboxes(the_form, do_check)
+{
+    var elts      = (typeof(document.forms[the_form].elements['check_del[]']) != 'undefined')
+                  ? document.forms[the_form].elements['check_del[]']
+                  : 0;
+    var elts_cnt  = (typeof(elts.length) != 'undefined')
+                  ? elts.length
+                  : 0;
+
+    if (elts_cnt) {
+        for (var i = 0; i < elts_cnt; i++) {
+            elts[i].checked = do_check;
+        }
+    } else {
+        elts.checked = do_check;
+    }
+return true; 
+}
+function allcheck_uncheck(the_form){
+	if (document.getElementById('all').checked === true){
+		 setCheckboxes(the_form, true);
+	}
+	else
+	{
+		setCheckboxes(the_form, false);
+	}
+}
+function setCheckboxes_r(the_form, do_check)
+{
+    var elts      = (typeof(document.forms[the_form].elements['check_del_r[]']) != 'undefined')
+                  ? document.forms[the_form].elements['check_del_r[]']
+                  : 0;
+    var elts_cnt  = (typeof(elts.length) != 'undefined')
+                  ? elts.length
+                  : 0;
+
+    if (elts_cnt) {
+        for (var i = 0; i < elts_cnt; i++) {
+            elts[i].checked = do_check;
+        }
+    } else {
+        elts.checked = do_check;
+    }
+return true; 
+}
+function allcheck_uncheck_r(the_form){
+	if (document.getElementById('all_r').checked === true){
+		 setCheckboxes_r(the_form, true);
+	}
+	else
+	{
+		setCheckboxes_r(the_form, false);
+	}
+}
+var diagnose = function(boxy) {
+            alert("Position: " + boxy.getPosition() +
+                  "\nSize: " + boxy.getSize() +
+                  "\nContent size: " + boxy.getContentSize() +
+                  "\nCenter: " + boxy.getCenter());
+        };      
+        $(function() {          
+          Boxy.DEFAULTS.title = '&nbsp;';
+          $('#diagnostics').click(function() {
+              new Boxy("<div><a href='#' onclick='diagnose(Boxy.get(this));'>Diagnose</a></div>");
+              return false;
+          });
+          var setContent = null;
+          $('#set-content-open').click(function() {
+              setContent = new Boxy(
+                "<div style='background-color:red'>This is content</div>", {
+                  behaviours: function(c) {
+                    c.hover(function() {
+                      $(this).css('backgroundColor', 'green');
+                    }, function() {
+                      $(this).css('backgroundColor', 'pink');
+                    });
+                  }
+                }
+              );
+              return false;
+          });
+          $('#set-content').click(function() {
+              setContent.setContent("<div>This is new content</div>");
+              return false;
+          });
+                    
+        });
+</script>
+{/literal}
+<div id="content">
+{if $rs}
+        	<h2>Thông tin liên hệ mới</h2>  <br />
+<form name="frm_contact" method="POST">
+				 <tbody><table class="datatable" width="100%">
+			  <tr>    	
+				<td width="15" align="center"><input type="checkbox" class="checkboxnut"name="all" id="all" onClick="allcheck_uncheck('frm_contact')"></td>
+				<td align=""><b>Họ và tên</b></td>
+				<td align=""><b>Email</b></td>
+				<td align=""><b>Thời gian liên hệ</b></td>
+				<td align="center"><b>Thao tác</b></td>				
+			  </tr>
+			  {foreach from=$rs item=rs name=rs}
+			 <tr bgcolor={cycle values="#FFFFFF,#EEEEEE"}>
+				<td width="15" align="center"><input type="checkbox" class="checkboxnut"name="check_del[]" value="{$rs.Contact_ID}" /></td>
+				<td>{$rs.Full_Name}</td>
+				<td>{$rs.Email}</td>
+				<td>{$rs.Create_Time_Change}</td>			      
+				<td valign="" align="center" width="150"><img border="0" src="images/icon_reply.gif"> <a href="?module=contact&a=contact_edit&id={$rs.Contact_ID}" title="Phản hồi thông tin" alt="Phản hồi thông tin">Trả lời</a>&nbsp;&nbsp;<img border="0" src="images/icon_view.gif"> <a href="#" onclick='Boxy.load("index.php?module=contact_ajax&id={$rs.Contact_ID}");'>Xem</a></td>
+			 </tr>		 
+  			{/foreach}
+</table></tbody><br />
+<div ><input type="button" name="btn_del" class="bluebutton" value="Xóa" onClick="del_contact('frm_contact');" /></div>
+</form>
+ {/if}
+<br />
+{if $rs_reply}
+<h2>Thông tin liên hệ đã phản hồi</h2>  <br />
+<form name="frm_contact_r" method="POST">
+				 <tbody><table class="datatable"  width="100%">
+			  <tr>    	
+				<td width="15" align="center"><input type="checkbox" class="checkboxnut"name="all_r" id="all_r" onClick="allcheck_uncheck_r('frm_contact_r')"></td>
+				<td align=""><b>Họ và tên</b></td>
+				<td align=""><b>Email</b></td>
+				<td align=""><b>Thời gian phản hồi</b></td>
+				<td align=""><b>Người thực hiện</b></td>				
+				<td align="center"><b>Thao tác</b></td>				
+			  </tr>
+			  {foreach from=$rs_reply item=rs_reply name=rs_reply}
+			 <tr bgcolor={cycle values="#FFFFFF,#EEEEEE"}>
+				<td width="15" align="center"><input type="checkbox" class="checkboxnut"name="check_del_r[]" value="{$rs_reply.Contact_ID}" /></td>
+				<td>{$rs_reply.Full_Name}</td>
+				<td>{$rs_reply.Email}</td>
+				<td>{$rs_reply.Update_Time_Change}</td>			      
+				<td>{$rs_reply.Admin_Name}</td>			      				
+				<td valign="" align="center" width="150"><img border="0" src="images/icosua.gif"> <a href="?module=contact&a=contact_edit&id={$rs_reply.Contact_ID}" title="Cập nhật thông tin" alt="Cập nhật thông tin">Cập nhật</a>&nbsp;&nbsp;<img border="0" src="images/icon_view.gif"> <a href="#" onclick='Boxy.load("index.php?module=contact_ajax&id={$rs_reply.Contact_ID}");'>Xem</a></td>
+			 </tr>		 
+  			{/foreach}
+
+</table></tbody><br />
+<div ><input type="button" name="btn_del" class="bluebutton" value="Xóa" onClick="del_contact_r('frm_contact_r');" /></div>
+</form>
+{/if}
+</div> 
+
+{literal}
+	<script type="text/javascript" charset="utf-8">	      
+function del_contact(frmName)
+{
+	var frm = document.forms[frmName];
+	var items = document.getElementsByName("check_del[]");
+	var enable = false;
+	for (var i=0; i<items.length; i++)
+	{
+		if (items[i].checked==true)
+		{
+			enable = true;
+			break;
+		}
+	}
+		if (frm && enable)
+			{
+				$.prompt('Bạn muốn xóa thông tin này?',{ 
+					buttons:{Ok:true, Cancel:false},
+					callback: function(v,m){
+				
+					if(v){
+					frm.action = "?module=contact&a=contact_delete";
+					frm.submit();
+					}
+					else{}
+					}
+			});
+	}
+	else
+		frm.onclick = $.prompt('Vui lòng chọn thông tin bạn muốn xóa!!!');		
+	return false;
+}
+function del_contact_r(frmName)
+{
+	var frm = document.forms[frmName];
+	var items = document.getElementsByName("check_del_r[]");
+	var enable = false;
+	for (var i=0; i<items.length; i++)
+	{
+		if (items[i].checked==true)
+		{
+			enable = true;
+			break;
+		}
+	}
+		if (frm && enable)
+			{
+				$.prompt('Bạn muốn xóa thông tin này?',{ 
+					buttons:{Ok:true, Cancel:false},
+					callback: function(v,m){
+				
+					if(v){
+					frm.action = "?module=contact&a=contact_delete";
+					frm.submit();
+					}
+					else{}
+					}
+			});
+	}
+	else
+		frm.onclick = $.prompt('Vui lòng chọn thông tin bạn muốn xóa!!!');		
+	return false;
+}
+</script>
+{/literal}

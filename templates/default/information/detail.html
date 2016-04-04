@@ -1,0 +1,31 @@
+<div class="product">
+    <h3><span> {$smarty.const._ABOUTUS} </span></h3>
+    <div class="frame_product">
+        <div class="infor_samecat">{if $namecat.Parent_ID neq 0} &raquo; <a href="{$smarty.const.URL_HOMEPAGE}/information/view/{$namecat.Parent_ID}/view.html">{$namecat.Parent_Name}</a>{/if} &raquo; {$namecat.Name}</div>
+        <table border="0" width="90%" cellpadding="5" cellspacing="0" style="font-size: 12px;">
+            <tr>
+                <td width="76"><img style="border: 1px solid #000000" src="{$smarty.const.URL_HOMEPAGE}/upload/news_thumb/{$detail.Image}" /></td>
+                <td valign="top" style="padding-left: 10px"><span class="news_title_detail">{$detail.Title}</span><br /><br /><span><i>{$detail.Summary}</i></span></td>
+                <td width="150" align="center" valign="top" class="news_time"></td>
+            </tr>
+            <tr>
+                <td colspan="3" style="padding: 0px 0px 10px 10px">{$detail.Description}</td>
+            </tr>
+            <tr>
+                <td colspan="3" align="right" style="padding: 0px 10px 10px 0px"><b>{$detail.Create_Name}</b> (<i>{$detail.Source}</i>)</td>
+            </tr>
+        </table>
+        <br />
+        {if $list}
+        <div class="infor_same">
+            <div class="infor_same2">{$smarty.const._INFORMATION_SAMECAT}</div>
+            <ul>
+                {section name="l" loop=$list}
+                <li><a href="{$smarty.const.URL_HOMEPAGE}/information/detail/{$list[l].Information_ID}/{$list[l].Title_r}.html">{$list[l].Title}</a></li>
+                {/section}
+            </ul>
+        </div>
+        {/if}
+    </div>
+</div><!--End #main-->
+<div class="bg_bottom"></div>

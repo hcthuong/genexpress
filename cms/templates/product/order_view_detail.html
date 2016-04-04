@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>	
+	
+<table width="600" cellpadding="0" cellspacing="0" align="left" style="color:#000; font-size:12px;">	
+	<tr  align="left">									
+		<td><b>Họ & Tên:</b></td>
+		<td>{$panel_module.Full_Name}</td>
+		<td><b>Điện thọai:</b></td>
+		<td>{$panel_module.Phone}</td>
+	</tr>
+	<tr  align="left">									
+		<td><b>Email:</td>
+		<td>{$panel_module.Email}</td>		
+		<td><b>Phương thức thanh tóan:</b></td>
+		<td>{if $panel_module.Pay_Type eq 1}Tiền mặt{else}Thanh toán qua Ngân lượng{/if}
+        	<br/>{if $panel_module.Payment_id eq null}Lỗi khi thanh toán{else}Đã thanh toán thành công{/if}
+        </td>		
+	</tr>	
+	<tr align="left">									
+		<td><b>Ngày đặt hàng:</td>
+		<td>{$panel_module.Create_Time_Change}</td>		
+		<td><b>Ngày xử lý:</b></td>
+		<td>{$panel_module.Update_Time_Change}</td>		
+	</tr>
+	<tr align="left">									
+		<td><b>Trạng thái:</b></td>
+		<td colspan="3" align="left">{if $panel_module.Status eq 0}Đang xử lý{else}Đã xử lý{/if}</td>		
+	</tr>				
+	<tr align="left">
+		<td><b>Yêu cầu khác:</b></td>
+		<td colspan="3">{$panel_module.Requirements}</td>
+	</tr>
+</table>
+<br />
+<table  width="600" border="1" bordercolor="#CCCCCC" align="center" cellspacing="0" cellpadding="3" style="border-collapse:collapse; font-size:12px;">	
+	<tr style="background-color:#ebebeb;font-weight:bold;">									
+		<td>Tên sản phẩm</td>
+		<td>Mã sản phẩm</td>
+        <td>Giá</td>
+		<td>Số lượng</td>
+		<td>Thành tiền</td>
+	</tr>
+	{foreach from=$order_view_detail item="order_view_detail" name="order_view_detail"}
+	<tr style="background-color:#FFF;">
+		<td>{$order_view_detail.Product_Name}</td>
+        <td>{$order_view_detail.Product_Code}</td>
+		<td align="right">{$order_view_detail.Price} VND</td>
+		<td align="center">{$order_view_detail.Amount}</td>
+		<td align="right">{$order_view_detail.Money} VND</td>
+	</tr>
+	{/foreach}
+	<tr>									
+		<td colspan="4" align="right" style="font-weight:bold;color:#FFF;">Tổng tiền:</td>
+		<td align="right" style="font-weight:bold;color:#FF0000;">{$total_money} VND</td>
+	</tr>		
+</table>
+
+</body>
+</html>								

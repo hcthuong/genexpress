@@ -1,0 +1,32 @@
+<div id="content">
+                	<div id="block">
+           	    		<h6><img align="absmiddle" src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/ico3.png" />&nbsp;&nbsp;{$cat_info.Category_Name}</h6>
+						{if $category_list neq ''}						
+						<ul id="product">
+						{section loop=$category_list name=category_list}
+                          <ul id="product_list">
+						  	{if $product_list[category_list] neq ''}
+						  	 <div style="font-size:16px; font-weight:bold; padding-left:10px; padding-top:10px;"><a href="{$smarty.const.URL_HOMEPAGE}/product/cat/{$category_list[category_list].Category_ID}/category.html">{$category_list[category_list].Category_Name}</a></div>
+						  	{section loop=$product_list[category_list] name=product_list}
+								{if $smarty.section.product_list.iteration % 3 eq 0}
+									<li>
+								{elseif $smarty.section.product_list.iteration % 3 eq 1}
+									<li style="margin-left:15px;">
+								{else}
+									<li style="margin-left:15px; margin-right:15px;">
+								{/if} 
+								  <a href="{$smarty.const.URL_HOMEPAGE}/product/view/{$product_list[category_list][product_list].Category_ID}/{$product_list[category_list][product_list].Product_ID}/detail.html"><img class="pro" src="{$smarty.const.URL_PRODUCT_THUMB}{$product_list[category_list][product_list].Image_Name}" alt="" /></a>
+								  <br /><a href="{$smarty.const.URL_HOMEPAGE}/product/view/{$product_list[category_list][product_list].Category_ID}/{$product_list[category_list][product_list].Product_ID}/detail.html">{$product_list[category_list][product_list].Product_Name}</a><br />{if $product_list[category_list][product_list].Sale neq '' && $product_list[category_list][product_list].Sale neq 0 }<span class="text14_sale">{$product_list[category_list][product_list].Price}</span> | <span class="text14">{$product_list[category_list][product_list].Sale} VN&#272;</span>{else}<span class="text14">{$product_list[category_list][product_list].Price} VN&#272;</span>{/if}<br />
+								  <a href="{$smarty.const.URL_HOMEPAGE}/product/basket/{$product_list[category_list][product_list].Product_ID}.html"><img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/btn_dathang.jpg" /></a></li>
+							 {/section}
+							{/if}							 
+                          </ul>
+						{/section}
+						</ul> 						  
+						{else}
+							<ul id="product">
+						  	 <div style="font-size:16px; font-weight:bold; text-align:center">Th&ocirc;ng tin &#273;ang &#273;&#432;&#7907;c c&#7853;p nh&#7853;t</div>
+							</ul>							
+						{/if}
+                </div>
+</div>

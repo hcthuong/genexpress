@@ -1,0 +1,19 @@
+		<div class="product">
+			<h3><span> {$smarty.const._MAIN_NEWS} </span></h3>
+			<div class="frame_product">
+                <table border="0" width="90%" cellpadding="5" cellspacing="0">
+                	<tr>
+                    	<td width="76"><img style="border: 1px solid #000000" src="{$smarty.const.URL_HOMEPAGE}/upload/news_thumb/{$news_detail.Image_Name}" /></td>
+                        <td valign="top" style="padding-left: 10px"><span class="news_title_detail">{$news_detail.Title}</span><br /><br /><span><i>{$news_detail.Summary}</i></span></td>
+                    	<td width="150" align="center" valign="top" class="news_time">({$news_detail.Create_Time_Change})</td>
+                    </tr>
+                    <tr>
+                    	<td colspan="3" style="padding: 0px 0px 10px 10px">{$news_detail.Description}</td>
+                    </tr>
+                    <tr>
+                    	<td colspan="3" align="right" style="padding: 0px 10px 10px 0px"><b>{$news_detail.Create_Name}</b> (<i>{$news_detail.Source}</i>)</td>
+                    </tr>
+                </table>	
+            </div>
+		</div><!--End #main-->
+		<div class="bg_bottom"></div>

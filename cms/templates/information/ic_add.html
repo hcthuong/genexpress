@@ -1,0 +1,50 @@
+<!-- Background wrapper -->
+<div id="bgwrap">
+    <!-- Main Content -->
+    <div id="content">
+        <div id="main">
+            <h1>Thêm danh mục giới thiệu</h1>
+            <div class="pad20">
+                <!-- Big buttons -->
+                <form name="frm_information_category_add" method="post" onSubmit="return check_value(frm_information_category_add);">
+                    <!-- Fieldset -->
+                    <fieldset>
+                        <legend>Thông tin</legend>
+                        <p><label for="sf">Tên danh mục: </label>
+                            <input type="text" class="mf" name="name" value="" id="name" maxlength="200"/><font color="#FF0000"><b>*</b></font>
+                        </p>
+                        <p><label for="sf">Tên danh mục (tiếng Anh): </label>
+                            <input type="text" class="mf" name="name_en" value="" id="name_en" maxlength="200"/><font color="#FF0000"><b>*</b></font>
+                        </p>
+                        <p><label for="sf" style="vertical-align:top" >Thuộc danh mục: </label>
+                            <select id="cat" name="cat">
+                                <option value="0">--- Chọn danh mục ---</option>
+                                {if $list_category_parent neq ''}
+                                {foreach name=list_category_parent from=$list_category_parent item=list_category_parent}
+                                <option value="{$list_category_parent.InCat_ID}">{$list_category_parent.Name}</option>
+                                {/foreach}
+                                {/if}
+                            </select>
+                        </p>
+                        <p>
+                            <input type="submit" class="button"  name="btn_submit" value="Lưu"/>
+                        </p>
+                    </fieldset>
+                    <!-- End of fieldset -->
+                </form>
+            </div>
+        </div>
+    </div>
+    {literal}
+    <script language="javascript">
+        function check_value(form)
+        {
+            if(form.category_name.value=="")
+            {
+                form.onclick = $.prompt('Vui lòng nhập tên danh mục!!!');
+                form.category_name.focus();
+                return false;
+            }
+        }
+    </script>
+    {/literal}

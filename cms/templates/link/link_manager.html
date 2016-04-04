@@ -1,0 +1,94 @@
+<script type="text/javascript" src="../jscripts/jquery.lightbox-0.5.min.js"></script>
+<link href="../css/jquery.lightbox-0.5.css" rel="stylesheet" type="text/css">
+{literal}
+<script type="text/javascript">
+$(function() {
+        $('#gallery a').lightBox();
+});
+</script>
+{/literal}
+<div id="bgwrap">		
+				<!-- Main Content -->
+				<div id="content">
+					<div id="main">
+						<h1>Quản lý Banner - Logo quảng cáo</h1>        
+				{if $rs}		
+				<form name="frm_link" method="POST">
+<div style="text-align:right"><input type="button" name="btn_del" class="button" value="Xóa" onClick="del_news('frm_news');" />
+  <input name="btnAddNew" type="button" value="Thêm" class="button" onclick="window.location='index.php?module=ads&a=ads_add'"/>
+</div>				
+			<table class="fullwidth" border="0" cellpadding="0" cellspacing="0"><tbody>
+			  <thead><tr>    
+			  <td width="15" align="center"><input type="checkbox" class="checkall" name="all" id="all" ></td>
+				<td align=""><b>Tên cty/Khách hàng</b></td>
+				<td align=""><b>Link</b></td>
+				<td align=""><b>Hình</b></td>
+				<td align=""><b>Vị trí</b></td>
+				<td align=""><b>Trạng thái</b></td>				
+				<td align="center"><b>Cập nhật sau cùng</b></td>
+				<td align="center"><b>Thao tác</b></td>				
+			  </tr></thead>
+			  {foreach from=$rs item=rs name=rs}
+			 <tr bgcolor={cycle values="#FFFFFF,#EEEEEE"}>
+				<td width="15" align="center"><input type="checkbox" class="checkboxnut"name="check_del[]" value="{$rs.Link_ID}" /></td>
+				<td >{$rs.Title}</td>
+				<td ><a href="{$rs.Url}" target="_blank">{$rs.Url}</a></td>
+				<td id="gallery" align="center"><a href="{$smarty.const.URL_LINK_THUMB}{$rs.Image_Name}"><ul><li class="ui-state-default ui-corner-all tooltip" title="Xem"><span class="ui-icon ui-icon-circle-zoomin"></span></li></ul></a></td>
+				<td>{if $rs.Position eq 1}Ngang dưới banner{elseif $rs.Position eq 2}Trái{elseif $rs.Position eq 3}Top Content
+					{elseif $rs.Position eq 4}Bottom Content{elseif $rs.Position eq 5}Right{elseif $rs.Position eq 6}Footer{/if}
+				</td>
+				<td width="" align="center" >
+				<a href="?module=ads&a=update_status&id={$rs.Link_ID}&status={$rs.Status}">{if $rs.Status eq 1}<img src="images/check.jpg" border="0" title="&#272;ang hi&#7875;n th&#7883;" alt="&#272;ang hi&#7875;n th&#7883;"  class="tooltip">{else}<img src="images/uncheck.png" border="0"  title="Kh&ocirc;ng hi&#7875;n th&#7883;" alt="Kh&ocirc;ng hi&#7875;n th&#7883;"  class="tooltip">{/if}</a>	</td>
+				<td align="center" title="Tạo lúc {$rs.Create_Time_Change} - {$rs.Create_Name}" class="tooltip">{$rs.Update_Time_Change} - {$rs.Update_Name}</td>		     			<td valign="" align="center" ><a href="?module=ads&a=ads_edit&id={$rs.Link_ID}" class="tooltip" title="Cập nhật thông tin" alt="Cập nhật thông tin">Cập nhật</a></td>
+			 </tr>
+  			{/foreach}
+ {if $paging} 
+ <tr><td align="center" colspan="8">{$paging}</td></tr>
+ {/if}			 
+</table></tbody>
+<div style="text-align:right" ><input type="button" name="btn_del" class="button" value="Xóa" onClick="del_link('frm_link');" />
+  <input name="btnAddNew" type="button" value="Thêm" class="button" onclick="window.location='index.php?module=ads&a=ads_add'"/>
+</div>				</form>
+{else}
+	 <div class="message information">
+	<h2>Thông báo</h2>
+	<p>Hiện tại chưa có thông tin</p>
+</div>
+			{/if}
+</div></div> 
+{literal}
+	<script type="text/javascript" charset="utf-8">
+	      
+function del_link(frmName)
+{
+	var frm = document.forms[frmName];
+	var items = document.getElementsByName("check_del[]");
+	var enable = false;
+	for (var i=0; i<items.length; i++)
+	{
+		if (items[i].checked==true)
+		{
+			enable = true;
+			break;
+		}
+	}
+		if (frm && enable)
+			{
+				$.prompt('Bạn muốn xóa thông tin này?',{ 
+					buttons:{Ok:true, Cancel:false},
+					callback: function(v,m){
+				
+					if(v){
+					frm.action = "?module=ads&a=ads_delete";
+					frm.submit();
+					}
+					else{}
+					}
+			});
+	}
+	else
+		frm.onclick = $.prompt('Vui lòng chọn thông tin bạn muốn xóa!!!');		
+	return false;
+}
+</script>
+{/literal}

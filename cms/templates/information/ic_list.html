@@ -1,0 +1,39 @@
+<div id="bgwrap">
+    <!-- Main Content -->
+    <div id="content">
+        <div id="main">
+            <h1>Danh sách danh mục</h1>
+            {if $res}<form name="frm_information_category_manager" method="POST">
+            <div style="text-align:right"><input name="btnAddNew" type="button" value="Thêm danh mục" class="button" onClick="window.location='index.php?module=information&a=icadd'"/></div>
+            <table class="fullwidth" border="0" cellpadding="0" cellspacing="0"><tbody><thead><tr>
+                <td><b>Tên danh mục </b></td>
+                <td><b>Thao tác</b></td>
+            </tr></thead>
+            {section name=res loop=$res}
+            <tr >
+                <td><b>{$res[res].Name}</b></td>
+                <td align="left" ><img border="0" src="images/icosua.gif" class="tooltip" alt="Cập nhật danh mục" title="Cập nhật danh mục"><a href="?module=information&a=icupdate&icid={$res[res].InCat_ID}" class="tooltip" alt="Cập nhật danh mục" title="Cập nhật danh mục"> Cập nhật</a>
+                    &nbsp;<img border="0" src="images/icodelete.gif" alt="Xóa danh mục" class="tooltip" title="Xóa danh mục"><a href="?module=information&a=icdelete&icid={$res[res].InCat_ID}" class="tooltip" alt="Xóa danh mục" title="Xóa danh mục"> Xóa</a>
+                </td>
+            </tr>
+            {section name=child loop=$child[res]}
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&brvbar;--&nbsp;{$child[res][child].Name}</td>
+                <td align="left"><img border="0" src="images/icosua.gif" alt="Cập nhật danh mục" title="Cập nhật danh mục"><a href="?module=information&a=icupdate&icid={$child[res][child].InCat_ID}" class="tooltip" style="text-decoration:none"> Cập nhật</a>
+                    &nbsp;<img border="0" src="images/icodelete.gif" alt="Xóa danh mục" title="Xóa danh mục"><a href="?module=information&a=icdelete&icid={$child[res][child].InCat_ID}" class="tooltip" style="text-decoration:none"> Xóa</a>
+                </td>
+            </tr>
+            {/section}
+            {/section}
+            </tbody>
+            </table>
+            <div style="text-align:right"><input name="btnAddNew" type="button" value="Thêm danh mục" class="button" onClick="window.location='index.php?module=information&a=icadd'"/>
+            </div>
+        </form>
+            {else}
+            <div class="message information">
+                <h2>Thông báo</h2>
+                <p>Hiện tại chưa có thông tin</p>
+            </div>
+            {/if}
+        </div></div>

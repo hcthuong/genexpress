@@ -1,0 +1,20 @@
+<div id="content">
+                	<div id="block">
+           	    		<h6><img align="absmiddle" src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/ico3.png" />&nbsp;&nbsp;{$module_title}</h6>
+                          <ul id="product">
+						  	{foreach from=$product_list item=product_list name=product_list}
+							{if $smarty.foreach.product_list.iteration % 3 eq 0}
+								<li>
+							{elseif $smarty.foreach.product_list.iteration % 3 eq 1}
+								<li style="margin-left:15px;">
+							{else}
+								<li style="margin-left:15px; margin-right:15px;">
+							{/if} 
+							  <a href="{$smarty.const.URL_HOMEPAGE}/product/view/{$product_list.Category_ID}/{$product_list.Product_ID}/detail.html"><img class="pro" src="{$smarty.const.URL_PRODUCT_THUMB}{$product_list.Image_Name}" alt="" /></a>
+                              <br /><a href="{$smarty.const.URL_HOMEPAGE}/product/view/{$product_list.Category_ID}/{$product_list.Product_ID}/detail.html">{$product_list.Product_Name}</a><br />{if $product_list.Sale neq '' && $product_list.Sale neq 0 }<span class="text14_sale">{$product_list.Price}</span> | <span class="text14">{$product_list.Sale} VN&#272;</span>{else}<span class="text14">{$product_list.Price} VN&#272;</span>{/if}<br />
+                              <a href="{$smarty.const.URL_HOMEPAGE}/product/basket/{$product_list.Product_ID}.html"><img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/btn_dathang.jpg" /></a></li>
+							 {/foreach}
+							   {if $paging}<div class="linkpage">{$paging}</div>{/if}
+                          </ul>
+                </div>
+</div>

@@ -1,0 +1,34 @@
+<div id="content">
+        	<h2>Cập nhật thông tin s&#7843;n ph&#7849;m</h2>
+        	<br />
+<form name="frm_product_edit" method="post" enctype="multipart/form-data" onSubmit="return check_value(frm_product_edit);">
+<table class="datatable"   width="100%" border="1" cellspacing="0" cellpadding="3" style="border-collapse:collapse; border-color:#EEEEEE;">
+	<tr>
+    	<td colspan="2"><b>Th&ocirc;ng tin</b></td>
+    </tr>
+    <tr>
+    	<td width="20%"><b>Họ & Tên:</b></td>
+        <td>{$info.Full_Name}</td>
+	</tr>	
+ 	<tr >
+    	<td width="20%"><b>Email:</b></td>
+        <td>{$info.Email}</td>
+	</tr>
+ 	<tr>
+    	<td width="20%"><b>Nội dung:</b></td>
+        <td>{$info.Content}</td>
+	</tr>	
+    <tr >
+   	  <td ><b>Phản hồi:</b></td>
+      <td>{$data.reply}
+      </td>
+    </tr>		
+	<tr>
+
+    	<td align="center" colspan="2"> 
+   	      <input type="submit" class="sumitbutton"  name="submit" value="Lưu" class="bluebutton"/></td>
+    </tr>
+</table>
+</form>
+<br />
+</div>

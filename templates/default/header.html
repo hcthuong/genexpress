@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript" type="text/javascript" src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/jscripts/jquery-1.7.1.min.js" ></script>
+<link href="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/css/carousel.css" media="screen" />
+<script language="JavaScript" type="text/javascript" src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/jscripts/jquery.myjcarousel.js" ></script>
+
+
+<title>Phu Quoc Taste</title>
+</head>
+
+<body>
+	<div class="page">
+	   <div class="header">
+			<a class="header_logo" href="#" title="">
+				Biên hải quán
+			</a>
+			<div class="header_right">
+				<div class="cart">	
+					<a href="{$smarty.const.URL_HOMEPAGE}/product/cart.html" class="cart_bg"><span><span>Có <b>{$slincart}</b> sản phẩm </span></span></a>
+				</div>
+				<div class="language">	
+					<a href="{$smarty.const.URL_HOMEPAGE}/home/lang/vi.html"><img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/flag_03.png" /></a>
+					<!--<a href="{$smarty.const.URL_HOMEPAGE}/home/lang/en.html"><img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/flag_05.png" /></a>-->
+				</div>
+			</div> <!-- end header_right-->
+		</div> <!-- end header-->
+		<div class="menu">
+			<ul>
+			   <li class="children"><a href="{$smarty.const.URL_HOMEPAGE}/home.html">{$smarty.const._HOME}</a> </li>
+                <li class=""><a href="#">{$smarty.const._ABOUTUS}</a>
+                    <div class="sub_menu" style="">
+                        <ul>
+                            {section name=incat loop=$incat}
+                            <li><a href="{$smarty.const.URL_HOMEPAGE}/information/view/{$incat[incat].InCat_ID}/view.html">{$incat[incat].Name}</a></li>
+                            {/section}
+                        </ul>
+                    </div>
+                </li>
+				<li class=""><a href="#">{$smarty.const._PRODUCTS}</a>
+					<div class="sub_menu" style="">
+						<ul>
+							{section name=cat loop=$cat}
+                            <li><a href="{$smarty.const.URL_HOMEPAGE}/product/cat/{$cat[cat].Category_ID}/cat.html">{$cat[cat].Category_Name}</a></li>
+                            {/section}
+						</ul>
+					</div>
+				</li>
+				<li class="children "><a href="{$smarty.const.URL_HOMEPAGE}/news.html">{$smarty.const._NEWS}</a></li>
+				<li class="children "><a href="{$smarty.const.URL_HOMEPAGE}/contact.html">{$smarty.const._CONTACT}</a></li>
+			</ul>
+		<div class="search_block_top">
+			<form method="post" action="{$smarty.const.URL_HOMEPAGE}/search/search.html" id="searchbox">
+				<input class="search_query" type="text" id="search_query_top" name="Search" value="{$smarty.const._SEARCH}" onFocus="if(this.value=='{$smarty.const._SEARCH}')this.value='';" onBlur="if(this.value=='')this.value='{$smarty.const._SEARCH}';" />
+				<a href="javascript:document.getElementById('searchbox').submit();">Go!</a>
+			</form>
+		</div>
+		</div>
+        {if $smarty.get.mod eq "" || $smarty.get.mod eq "home"}
+        <div class="main">
+        {else}
+        <div class="main2">
+        {/if}
+			<div class="content">
+				<div class="banner">
+					<a href="#"><img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/slide_03.jpg" /> </a>
+				</div>
+			</div><!--End #content-->

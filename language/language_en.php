@@ -1,0 +1,104 @@
+<?php
+define("_CHARSET","utf-8");
+define("SUFFIX", "_EN");
+define("_LANGUAGE","Language");
+define("_INTRODUCE","Giới thiệu");
+define("_INTRODUCE_UPPER","GIỚI THIỆU");
+define("_CONTACT_UPPER","LIÊN HỆ");
+define("_SEND",".: Gửi :.");
+define("_VIEWMORE","Xem tiếp");
+define("_ORDER_INFORMATION","Thông tin khác");
+define("_ORDER_PRODUCT","Sản phẩm cùng loại");
+define("_SERVICE", "Dịch vụ");
+define("_SERVICE_UPPER", "DỊCH VỤ");
+define("_NEWS_UPPER", "TIN TỨC");
+define("_DOWNLOAD", "Download");
+define("_DOWNLOAD_UPPER", "DOWNLOAD");
+define("_PRODUCT", "Sản phẩm");
+define("_PRODUCT_UPPER", "SẢN PHẨM");
+define("_FILE_TYPE", "Loại tập tin");
+define("_FILE_SIZE", "Dung lượng");
+define("_DOWN_COUNT", "Số lần tải");
+define("_ORDER", "Order");
+define("_PRICE", "Price");
+define("_PRICE_SALE", "Giá giảm");
+define("_NEW_PRODUCT", "Sản phẩm mới");
+define("_HOT_PRODUCT", "Sản phẩm hot");
+define("_PRODUCT_NAME", "Product Name");
+define("_PRODUCT_CODE", "Product Code");
+define("_GO_CART", "Check cart");
+define("_CONTINUE", "Continue");
+define("_AMOUNT", "Quantity");
+define("_TOTAL", "Total");
+define("_CURRENCY", "$");
+define("_SUM_TOTAL", "Sum");
+define("_SHOPPING_CART", "SHOPPING CART");
+define("_SHOPPING_CART_UPPER", "GIỎ HÀNG");
+define("_CONTACT_INFORMATION", "Thông tin liên hệ");
+define("_COMMENT", "Nhận xét");
+define("_CLOSE","Đóng");
+define("_LIKE", "Thích");
+define("_UNLIKE", "Không thích");
+define("_NO_COMMENT", "Khác");
+define("_MESS_SUCCESS_COMMENT", "Thông tin nhận xét sản phẩm đã được gửi. Cám ơn bạn đã góp ý.");
+define("_FULL_NAME", "Họ & tên");
+define("_ADDRESS", "Địa chỉ");
+define("_EMAIL", "Email");
+define("_PHONE", "Điện thoại");
+define("_REQUIRES", "Yêu cầu khác");
+define("_CONTENT", "Nội dung");
+define("_VERIFY_CODE", "Mã bảo vệ");
+define("_SEARCH", "Tìm kiếm");
+define("_RESULT", "Kết quả");
+define("PAGE", "Page");
+define("PREVIOUS_PAGE", "Previous page");
+define("NEXT_PAGE", "Next page");
+//Message Contact Error
+define("_ERR_NAME", "Vui lòng nhập họ tên!");
+define("_ERR_EMAIL", "Vui lòng nhập email!");
+define("_ERR_EMAIL_VALUE", "Email không hợp lệ!");
+define("_ERR_DESCRIPTION", "Vui lòng nhập nội dung liên hệ!");
+define("_ERR_VERIFY", "Vui lòng mã bảo vệ!");
+define("_ERR_VERIFY_DIFF", "Mã bảo vệ không chính xác!");
+define("_ERR_SEND_INVALID", "Vui lòng nhập đầy đủ thông tin yêu cầu!");
+define("_ERR_SEND", "Lỗi gửi thông tin liên hệ!");
+define("_ERR_KEYWORD", "Vui lòng nhập từ khóa!");
+//End Message Contact Error
+//Message Download Error
+define("_ERR_FILE_DOWNLOAD", "Không tìm thấy tập tin!!");
+//End  download error
+//message shopping cart
+define("_PAYMENT_NGANLUONG", "Pay");
+define("_STT", "No.");
+define("_ADD_CART", "Sản phẩm đã được thêm vào giỏ hàng!!");
+define("_NULL_CART", "Hiện tại giỏ hàng chưa có sản phẩm!!");
+define("_NULL_CART_RIGHT", "Giỏ hàng rỗng!!");
+define("_DEL_CART", "Đã xóa sản phẩm khỏi giỏ hàng!!");
+define("_ERR_FULLNAME", "Vui lòng nhập họ tên!!");
+define("_ERR_ADDRESS", "Vui lòng nhập địa chỉ!!");
+define("_ERR_PHONE", "Vui lòng nhập điện thoại liên hệ!!");
+define("_ERR_CART", "Sản phẩm không tồn tại!!");
+define("_MESS", "Thông báo!!");
+define("_MESS_SYSTEM", "Thông báo từ hệ thống!!");
+define("_MESS_CHOOSE_DEL", "Vui lòng chọn sản phẩm cần xóa!!");
+define("_MESS_DEL", "Bạn muốn xóa sãn phẩm này?!!");
+//end message shopping cart
+define("_MESS_SUCCESS_CONTACT", "Thông tin liên hệ đã được gửi");
+define("_SUCCESS_SHOPPING", "Đặt hàng thành công. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.");
+define("_SUCCESS_SHOPPING_NGANLUONG", "Đang xử lý...");
+define("_SUCCESS_SHOPPING_NGANLUONG2", "Đặt hàng và thanh toán thành công. Chúng tôi sẽ liên hệ giao hàng với bạn trong thời gian sớm nhất. Xin cám ơn Quý khách");
+define("_ERROR_SHOPPING_NGANLUONG", "Quá trình thanh toán ko thành công. Chúng tôi sẽ kiểm tra và liên hệ với bạn trong thời gian sớm nhất.");
+define("_HOT_PRODUCT", "SẢN PHẨM BÁN CHẠY");
+define("_SALE_PRODUCT", "SẢN PHẨM BÁN CHẠY");
+define("_CHOOSE", "Chọn");
+define("_RESULT_SEARCH", "Kết quả tìm kiếm");
+define("_SEARCH", "Search");
+
+define("_MAIN_PRODUCT", "MAIN PRODUCT");
+define("_MAIN_NEWS", "NEWS");
+define("_NEWS", "News");
+define("_HOME", "Home");
+define("_PRODUCTS", "Products");
+define("_CONTACT", "Contact");
+define("_ABOUTUS", "About us");
+?>

@@ -1,0 +1,62 @@
+﻿{literal}
+<script language="javascript">
+var r={
+  'notnumbers':/[^\d]/g
+}
+function valid(o,w){
+  o.value = o.value.replace(r[w],'');
+}
+</script>
+{/literal}
+<div id="content">
+        	<h2>Thông tin hệ thống liên hệ</h2><br />
+<form name="frm_setting_contact" method="post" enctype="multipart/form-data">
+<tbody><table class="datatable" width="100%">
+	<tr>
+    	<td colspan="2"><b>Cấu hình liên hệ</b></td>
+    </tr>
+	<tr>
+    	<td width="30%"><b>Số lượng thông tin trên một trang:</b></td>
+        <td width="70%">
+        <input type="text" name="per_page" onkeyup="valid(this,'notnumbers')" onblur="valid(this,'notnumbers')" size="1" maxlength="3" value="{$per_page}"/></td>
+    </tr>	
+	<tr >
+    	<td width="30%"><b>Sắp xếp thông tin theo</b></td>
+        <td width="70%">
+       	<select name="order_field" id="order_field" >
+			<option value="Title" {if $order_field eq 'Title'} selected="selected"{/if}>Tiêu đề</option>
+			<option value="Create_Time" {if $order_field eq 'Create_Time'} selected="selected"{/if}>Thời gian liên hệ</option>
+			<option value="Update_Time" {if $order_field eq 'Update_Time'} selected="selected"{/if}>Thời gian trả lời</option>			
+		</select> </td>
+    </tr>
+	<tr>
+    	<td width="30%"><b>Kiểu sắp xếp:</b></td>
+        <td>		
+		<select name="order_type" id="order_type">
+			<option value="desc" {if $order_type eq 'desc'} selected="selected"{/if}>Giảm dần</option>			
+			<option value="asc" {if $order_type eq 'asc'} selected="selected"{/if}>Tăng dần</option>
+		</select>			
+		</td>
+    </tr>
+	<tr >
+    	<td width="30%"><b>Hình thức liên hệ:</b></td>
+        <td width="70%">
+        <select name="contact_type" id="contact_type">
+			<option value="0" {if $contact_type eq 0} selected="selected"{/if}>Gửi vào Email liên hệ của hệ thống</option>
+			<option value="1" {if $contact_type eq 1} selected="selected"{/if}>Lưu thông tin vào cơ sở dữ liệu</option>
+		</select>
+		</td>
+    </tr>
+	<tr>
+    	<td width="30%"><b>Email liên hệ:</b></td>
+        <td width="70%">
+        	 <input type="text" name="email_system"  maxlength="100" value="{$email_system}"/>
+		</td>
+    </tr>			
+ <tr >
+    	<td align="center" colspan="2"><input type="submit" class="sumitbutton"  name="submit" value="Xác nhận" /></td>
+    </tr>
+</table></tbody>		
+</form>	
+<br />
+</div>	

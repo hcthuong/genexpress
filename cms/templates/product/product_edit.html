@@ -1,0 +1,98 @@
+<script type="text/javascript" src="../jscripts/jquery.lightbox-0.5.min.js"></script>
+<link href="../css/jquery.lightbox-0.5.css" rel="stylesheet" type="text/css">
+{literal}
+<script language="javascript">
+var r={
+  'notnumbers':/[^\d\.\,\.]/g
+}
+
+function valid(o,w){
+  o.value = o.value.replace(r[w],'');
+}
+$(function() {
+        $('#gallery a').lightBox();
+});
+</script>
+{/literal}
+<!-- Background wrapper -->
+			<div id="bgwrap">		
+				<!-- Main Content -->
+				<div id="content">
+					<div id="main">
+						<h1>Cập nhật thông tin s&#7843;n ph&#7849;m</h1>
+							<div class="pad20">
+					<!-- Big buttons -->
+							<form name="frm_product_edit" method="post" enctype="multipart/form-data" onSubmit="return check_value(frm_product_edit);">
+							<!-- Fieldset -->
+							<fieldset>   
+							<legend>Thông tin</legend>
+								<p><label for="sf">T&ecirc;n s&#7843;n ph&#7849;m: </label>
+									<input type="text" class="mf" size="25" name="product_name" id="product_name" value="{$product.Product_Name}"  maxlength="100"/><font color="#FF0000"><b>*</b></font>
+								</p>
+                                <p><label for="sf">T&ecirc;n s&#7843;n ph&#7849;m (tiếng Anh): </label>
+									<input type="text" class="mf" size="25" name="product_name_en" id="product_name_en" value="{$product.Product_Name_EN}"  maxlength="100"/><font color="#FF0000"><b>*</b></font>
+								</p>
+								<p><label for="sf">M&atilde; s&#7843;n ph&#7849;m: </label>
+									<input type="text" name="product_code" id="product_code" maxlength="15"  value="{$product.Product_Code}" size="10" maxlength="15"/><font color="#FF0000"><b>*</b></font>
+								</p>
+								<p><label for="sf">Thu&#7897;c danh m&#7909;c: </label>
+								<select id="product_category" name="product_category">
+									<option value="0">Ch&#7885;n danh m&#7909;c</option>
+									{section name=rs loop=$rs}			
+										<option value="{$rs[rs].Category_ID}" style="background-color:#EEEEEE; font-weight:bold; font-family:Verdana, Arial, Helvetica, sans-serif;" {if $product.Category_ID eq $rs[rs].Category_ID} selected="selected"{/if}{if $rs[rs].Type eq 1} disabled="disabled"{/if}><b>{$rs[rs].Category_Name}</b></option>										
+										{section name=sub loop=$sub[rs]}
+											<option value="{$sub[rs][sub].Category_ID}" {if $product.Category_ID eq $sub[rs][sub].Category_ID} selected="selected"{/if}>&nbsp;&nbsp;&nbsp;&nbsp;&brvbar;--&nbsp;{$sub[rs][sub].Category_Name}</option>										
+										{/section}
+									{/section}
+								</select>&nbsp;<font color="#FF0000">*</font>
+								</p>								
+								<p><label for="sf" style="vertical-align:top" >Chi tiết: </label>
+									{$description}
+								</p>
+                                <p><label for="sf" style="vertical-align:top" >Chi tiết (tiếng Anh): </label>
+									{$description_en}
+								</p>   
+								<p><label for="sf">Gi&aacute; (VNĐ): </label>
+									<input type="text" size="10" name="product_price" value="{if $product.Price}{$product.Price}{else}0{/if}" id="price" maxlength="15" onkeyup="valid(this,'notnumbers')" onblur="valid(this,'notnumbers')" /><font color="#FF0000"><b>*</b></font>
+								</p>
+								<p><label for="sf">Gi&aacute; (USD): </label>
+									<input type="text" size="10"  name="product_price_en" value="{if $product.Price_EN}{$product.Price_EN}{else}0{/if}" id="price_en" maxlength="15" onkeyup="valid(this,'notnumbers')" onblur="valid(this,'notnumbers')" />
+								</p>
+								<p><label for="sf" style="vertical-align:top" >Hình minh họa: </label>
+									<input type="file" name="filename" id="filename" size="30" />{if $product.Image_Name neq ''}<input type="checkbox" class="checkboxnut"value="1" name="del_image" id="del_image" /><span id="gallery"><a href="{$smarty.const.URL_PRODUCT}{$product.Image_Name}" >Xóa ảnh</a></span>{/if}
+								</p>     	
+								<p>								
+									<input type="submit" class="button"  name="submit" value="Lưu"/>
+								</p>		  
+							</fieldset>
+								<!-- End of fieldset -->		
+							</form>
+							</div> 
+					</div>
+				</div>
+{literal}
+<script language="javascript">
+function check_value(form)
+{
+	if(form.product_name.value=="")
+	{
+		form.onclick = $.prompt('Vui l&ograve;ng nh&#7853;p t&ecirc;n s&#7843;n ph&#7849;m!!!');
+		form.product_name.focus();
+		return false;
+	}	
+			
+	if(form.product_category.value==0)
+	{
+		form.onclick = $.prompt('Vui l&ograve;ng ch&#7885;n danh m&#7909;c sản phẩm!!!');
+		form.product_category.focus();
+		return false;
+	}	
+		if(form.product_category.value==0)
+	{
+		form.onclick = $.prompt('Vui l&ograve;ng ch&#7885;n danh m&#7909;c sản phẩm!!!');
+		form.product_category.focus();
+		return false;
+	}	
+}
+</script> 
+{/literal}

@@ -1,0 +1,78 @@
+<div id="bgwrap">		
+				<!-- Main Content -->
+				<div id="content">
+					<div id="main">
+						<h1>Danh sách hỗ trợ</h1>        
+				{if $rs}		
+				<form name="frm_yahoo" method="POST">
+<div style="text-align:right"><input name="btnDelete" type="button" value="X&oacute;a" class="button" onClick="del_yahoo('frm_yahoo');" />
+        <input name="btnAddNew" type="button" value="Th&ecirc;m" class="button" onClick="window.location='index.php?module=yahoo&a=insert_yahoo'"/>
+</div>	
+				<table class="fullwidth" border="0" cellpadding="0" cellspacing="0"><tbody>
+			  <thead><tr>    	
+				<td width="21" align="center"><input type="checkbox" class="checkall" name="all" id="all" ></td>   
+				<td width="" align=""><b>Nick</b></td>    
+				<td width="" align=""><b>T&ecirc;n & Bộ phận hỗ trợ</b></td>    
+				<td align=""><b>Thao t&aacute;c </b></td>			
+			  </tr></thead>
+			  {foreach from=$rs item=rs name=rs}
+				<tr bgcolor={cycle values="#FFFFFF,#EEEEEE"}>
+				<td width="21" align="center"><input type="checkbox" class="checkboxnut"name="nick_del[]" value="{$rs.Yahoo_ID}" /></td>   
+				<td>{$rs.Nick}</td>         	
+			 	<td>{$rs.Fullname}</td>         		
+				<td align="center" width="91"><a href="?module=yahoo&a=yahoo_edit&id={$rs.Yahoo_ID}" class="function" style="text-decoration:none">Cập nhật</a></td>
+			  </tr>
+			  {/foreach}
+				{if $paging}
+				<tr>
+					<td style="border:none;" colspan="4" align="center">{$paging}</td>
+				</tr>
+				{/if}
+ </tbody>
+</table>
+<div style="text-align:right"><input name="btnDelete" type="button" value="X&oacute;a" class="button" onClick="del_yahoo('frm_yahoo');" />
+        <input name="btnAddNew" type="button" value="Th&ecirc;m" class="button" onClick="window.location='index.php?module=yahoo&a=insert_yahoo'"/>
+</div>				</form>
+{else}
+	 <div class="message information">
+	<h2>Thông báo</h2>
+	<p>Hiện tại chưa có thông tin</p>
+</div>
+			{/if}
+</div></div>
+{literal}
+	<script type="text/javascript" charset="utf-8">
+	      
+function del_yahoo(frmName)
+{
+	var frm = document.forms[frmName];
+	var items = document.getElementsByName("nick_del[]");
+	var enable = false;
+	for (var i=0; i<items.length; i++)
+	{
+		if (items[i].checked==true)
+		{
+			enable = true;
+			break;
+		}
+	}
+		if (frm && enable)
+			{
+				$.prompt('B&#7841;n mu&#7889;n x&oacute;a nick yahoo n&agrave;y?',{ 
+					buttons:{Ok:true, Cancel:false},
+					callback: function(v,m){
+				
+					if(v){
+					frm.action = "?module=yahoo&a=delete_yahoo";
+					frm.submit();
+					}
+					else{}
+					}
+			});
+	}
+	else
+		frm.onclick = $.prompt('B&#7841;n ch&#432;a ch&#7885;n nick yahoo c&#7847;n x&oacute;a!!!');		
+	return false;
+}
+</script>
+{/literal}

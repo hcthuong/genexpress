@@ -1,0 +1,28 @@
+	<!-- Sidebar -->
+				<div id="sidebar">					
+					<!-- Lists -->
+					<h2>Danh sách chức năng</h2>
+					<ul>
+						{if $smarty.session.logined_information_detail.IsAdmin eq 1}
+						<li>
+							<a href="?module=cms"><b>Qu&#7843;n tr&#7883; h&#7879; th&#7889;ng</b></a>
+							<ul>
+								<li><a href="?module=cms&a=admin_manager">Danh s&aacute;ch qu&#7843;n tr&#7883;</a></li>
+								<li><a href="?module=cms&a=add_admin">Th&ecirc;m qu&#7843;n tr&#7883; vi&ecirc;n</a></li>
+								<li><a href="?module=setting&a=setting_manager">C&#7845;u h&igrave;nh</a></li>
+								<li><a href="?module=cms&a=system_diary">Nh&#7853;t k&yacute; h&#7879; th&#7889;ng</a></li>
+							</ul>
+						</li>
+						{/if}
+						{foreach from=$list_module name=list_module item=list_module}							
+								{$list_module.Description}
+						{/foreach}
+						<li><a href="?module=logout"><b>Thoát</b></a></li>
+					</ul>
+					<!-- End of Lists -->					
+				</div>
+				<!-- End of Sidebar -->				
+			</div>
+			<!-- End of bgwrap -->
+		</div>
+		<!-- End of Container -->

@@ -1,0 +1,28 @@
+<div id="content">
+                	<div id="block">
+           	    		<h6><img align="absmiddle" src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/ico3.png" />&nbsp;&nbsp;Tin t&#7913;c</h6>
+						<ul id="news">
+							<li>
+								<table width="100%" style="font-size:12px;">
+									<tr>
+										<td width="80" align="center">{if $news_detail.Image_Name neq ''}<img src="{$smarty.const.URL_NEWS_THUMB}{$news_detail.Image_Name}" width="75" />{else}<img src="{$smarty.const.URL_URL_HOMEPAGE}/upload/no_image.gif" width="75" />{/if}</td>
+										<td align="left" valign="top"><a href="{$smarty.const.URL_HOMEPAGE}/news/view/{$news_detail.News_ID}/detail.html"><b>{$news_detail.Title}</b></a><br /><font style="font-size:10px; font-style:italic; color:#777777;">({$news_detail.Create_Time_Change})</font><br/><b>{$news_detail.Summary}</b>
+										</td>
+									</tr>
+									<tr><td colspan="2" >{$news_detail.Description}</td></tr>
+									<tr><td colspan="2" align="right" style="padding-right:30px;"><i><b>{$news_detail.Create_Name}</b>({$news_detail.Source})</i></td></tr>
+									<tr><td colspan="2" height="10">&nbsp;</td></tr>
+								</table>
+								
+								<table width="100%" style="font-size:12px;">
+									{foreach from=$order_info name=order_info item=order_info}
+									<tr>
+										<td align="left" valign="top"><a href="{$smarty.const.URL_HOMEPAGE}/news/view/{$order_info.News_ID}/detail.html"><b>&bull; {$order_info.Title}</b></a><br/>{$info.Summary}
+										</td>
+									</tr>
+									{/foreach}
+								</table>
+							</li>
+						</ul>
+					</div>
+</div>	

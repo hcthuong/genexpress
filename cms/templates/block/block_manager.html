@@ -1,0 +1,84 @@
+{literal}
+<script language="javascript">
+var r={
+  'notnumbers':/[^\d]/g
+}
+function valid(o,w){
+  o.value = o.value.replace(r[w],'');
+}
+function MM_jumpMenu(targ,selObj,restore){ //v3.0 
+	eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'"); if 
+	(restore) selObj.selectedIndex=0; } //-->
+</script>
+{/literal}
+<div id="bgwrap">		
+				<!-- Main Content -->
+				<div id="content">
+					<div id="main">
+						<h1>Danh sách Block</h1>        
+				{if $rs}		
+				<table class="fullwidth" border="0" cellpadding="0" cellspacing="0"><tbody>
+				  <thead><tr>    	
+				<td align=""><b>Tiêu đề Block</b></td>
+				<td align=""><b>Tập tin nội dung</b></td>
+				<td align=""><b>Tập tin thể hiện</b></td>
+				<td align="" width="50px"><b>Vị trí</b></td>
+				<td align=""><b>Trang thể hiện</b></td>				
+				<td align=""><b>Thứ tự</b></td>              
+				<td align="center"><b>Thao tác</b></td>
+				  </tr></thead>	
+				 <form name="frm_block_add" method="post">
+			  <tr>
+			  	<td colspan="7" align="right">
+				<select name="list_template" id="list_template" onChange="MM_jumpMenu('parent',this,0)">
+					{foreach from=$list_template item=list_template name=list_template}
+						<option value="?module=block&tpl={$list_template}" {if $list_template eq $tpl} selected="selected"{/if}>{$list_template}</option>
+					{/foreach}
+				</select>
+				{if $num_files gt $num_file}<input name="Add" type="submit" class="button"  value="Thêm Block" class="bluebutton" />{/if}
+				</td>
+			  </tr>
+			  </form>
+			   <form name="frm_block" method="POST">
+			  {section loop=$rs name=rs}
+			 <tr bgcolor={cycle values="#FFFFFF,#EEEEEE"}>
+				<td>{$rs[rs].Title}</td>
+				<td>{$rs[rs].Source}</td>
+				<td>{$rs[rs].Style}</td>
+				<td align="center">{if $rs[rs].Position eq 1}Block Trên{elseif $rs[rs].Position eq 2}Block Trái{/if}
+				{if $rs[rs].Position eq 3}Block Giữa trên{elseif $rs[rs].Position eq 4}Block Giữa dưới{/if}
+				{if $rs[rs].Position eq 5}Block Phải{elseif $rs[rs].Position eq 6}Block dưới{/if}				
+				</td>
+				<td>
+					<table class="datatable" width="100%">
+						{section name=block_module loop=$block_module[rs]}				
+							<tr bgcolor="{if $smarty.section.block_module[rs].iteration % 2 eq 1}#EEEEEE{else}#FFFFFF{/if}">
+								<td width="80%">	
+									{$block_module[rs][block_module].Page_Name}	
+								</td>
+								<td width="20%" align="center">	
+									<a id="xoabutton" href="?module=block&a=remove_block_page&listid={$block_module[rs][block_module].List_ID}&tpl={$template}" alt="Xóa" title="Xóa"><img border="0" src="images/icodelete.gif" /></a>
+								</td>
+							</tr>				
+						{/section }			
+					</table>				
+				</td>
+				<td align="center"><input type="hidden" name="block_id[]" value="{$rs[rs].Block_ID}"><input name="st[]" id="st" value="{$rs[rs].St}" maxlength="2" onkeyup="valid(this,'notnumbers')" onblur="valid(this,'notnumbers')" size="1" /></td>
+				<td align="center">
+<a id="xoabutton" href="?module=block&a=block_edit&block_id={$rs[rs].Block_ID}" class="tooltip" title="Cập nhật thông tin" alt="Cập nhật thông tin"><img border="0" src="images/icosua.gif"></a> - 
+<a id="xoabutton" href="?module=block&a=block_delete&block_id={$rs[rs].Block_ID}&tpl={$template}" class="tooltip" title="Xóa Block" alt="Xóa Block"><img src="images/icodelete.gif" /></a> -
+<a id="xoabutton" href="?module=block&a=block_add_page&block_id={$rs[rs].Block_ID}" class="tooltip" title="Thêm trang thể hiện" alt="Thêm trang thể hiện"> <img src="images/icocailai.gif" /></a></td>
+			 </tr>			 
+  			{/section}
+			<tr><td colspan="6" align="right"><input name="submit" type="submit" class="button"  value="Cập nhật" class="bluebutton" /></td>
+<td>&nbsp;</td>
+			</tr>			
+</table></tbody>
+</form>
+{else}
+	 <div class="message information">
+	<h2>Thông báo</h2>
+	<p>Hiện tại chưa có thông tin. <a href="?module=block&a=block_add">Thêm Block</a></p>
+</div>
+			{/if}
+</div></div> 

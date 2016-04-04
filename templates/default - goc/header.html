@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{$smarty.const.URL_HOMEPAGE}/jscripts/jquery-1.3.2.min.js"></script>
+<title>{$title}</title>
+</head>
+<body>
+	<div id="header">
+    	<div id="top">
+        	<h1 class="logo"><img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/logo.png" /> </h1>
+            <div class="slogan"><img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/slogan.png" /></div>
+            <ul class="menu">
+                <li><a href="{$smarty.const.URL_HOMEPAGE}/home.html" class="parent"><span>{$smarty.const._HOME}</span></a> </li>
+				{section name=rs loop=$rs}
+					<li><a href="{$smarty.const.URL_HOMEPAGE}/product/cat/{$rs[rs].Category_ID}/category.html" class="parent"><span>{$rs[rs].Category_Name}</span></a>
+						{if $rs[rs].Type eq 1}
+						<div><ul>
+						{section name=sub loop=$sub[rs]}
+								<li><a href="{$smarty.const.URL_HOMEPAGE}/product/cat/{$sub[rs][sub].Category_ID}/category.html"><span>» {$sub[rs][sub].Category_Name}</span></a></li>
+						{/section}
+						</ul></div>
+						{/if}
+					</li>
+				{/section}
+                <li><a href="{$smarty.const.URL_HOMEPAGE}/contact.html" class="parent"><span>{$smarty.const._CONTACT}</span></a> </li>
+			</ul>
+        </div><!--End .top-->
+    </div><!--End #header-->
+	<div id="page">
+    <div class="bg_hoavan">
+    	<div id="wrapper">
+        	<div id="wrap_top">
+				<div class="banner"><img class="marginright10" src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/banner.jpg" /><img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/banner1.jpg" /></div>
+            	{foreach from=$block_content name=block_content item=block_content}
+					{if $block_content.Position eq 3}
+						{assign var=temp value=$block_content.Style}			
+						{include file="$template/block/$temp" title='Block_Left' link=$block_content}
+					{/if}
+				{/foreach}
+            <div id="wrap_content">

@@ -1,0 +1,51 @@
+<div id="bgwrap">		
+				<!-- Main Content -->
+				<div id="content">
+					<div id="main">
+						<h1>Danh s&aacute;ch danh m&#7909;c</h1>        
+				{if $rs}<form name="frm_product_category_manager" method="POST">
+				<div style="text-align:right"><input name="btnAddNew" type="button" value="Th&ecirc;m danh mục" class="button" onClick="window.location='index.php?module=product&a=product_category_add'"/></div>				
+				<table class="fullwidth" border="0" cellpadding="0" cellspacing="0"><tbody><thead><tr>    	
+					<td><b>T&ecirc;n danh m&#7909;c </b></td>
+					<td><b>Người tạo</b></td>
+					<td><b>Thời gian tạo</b></td>	
+					<td><b>Cập nhật</b></td>
+					<td><b>Thời gian cập nhật</b></td>				
+					<td><b>Thao t&aacute;c</b></td>			
+			  	</tr></thead>
+			 {section name=rs loop=$rs}
+ 				<tr >
+				<td><b>{$rs[rs].Category_Name}</b></td>
+				<td>{$rs[rs].Create_Name}</td>
+				<td>{$rs[rs].Create_Time_Change}</td>
+				<td>{$rs[rs].Update_Name}</td>
+				<td>{$rs[rs].Update_Time_Change}</td>				    
+				<td align="center" ><img border="0" src="images/icosua.gif" class="tooltip" alt="C&#7853;p nh&#7853;t danh m&#7909;c" title="C&#7853;p nh&#7853;t danh m&#7909;c"><a href="?module=product&a=product_category_edit&catid={$rs[rs].Category_ID}" class="tooltip" alt="C&#7853;p nh&#7853;t danh m&#7909;c" title="C&#7853;p nh&#7853;t danh m&#7909;c"> Cập nhật</a>
+				&nbsp;<img border="0" src="images/icodelete.gif" alt="X&oacute;a danh m&#7909;c" class="tooltip" title="X&oacute;a danh m&#7909;c"><a href="?module=product&a=product_category_delete&catid={$rs[rs].Category_ID}" class="tooltip" alt="C&#7853;p nh&#7853;t danh m&#7909;c" title="C&#7853;p nh&#7853;t danh m&#7909;c"> Xóa</a>
+			</td>
+			  </tr> 
+			  {section name=sub loop=$sub[rs]}
+			 <tr>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&brvbar;--&nbsp;{$sub[rs][sub].Category_Name}</td>
+				<td>{$sub[rs][sub].Create_Name}</td>
+				<td>{$sub[rs][sub].Create_Time_Change}</td>
+				<td>{$sub[rs][sub].Update_Name}</td>
+				<td>{$sub[rs][sub].Update_Time_Change}</td>						    	
+				<td align="center"><img border="0" src="images/icosua.gif" alt="C&#7853;p nh&#7853;t danh m&#7909;c" title="C&#7853;p nh&#7853;t danh m&#7909;c"><a href="?module=product&a=product_category_edit&catid={$sub[rs][sub].Category_ID}" class="tooltip" style="text-decoration:none"> Cập nhật</a>
+				&nbsp;<img border="0" src="images/icodelete.gif" alt="X&oacute;a danh m&#7909;c" title="X&oacute;a danh m&#7909;c"><a href="?module=product&a=product_category_delete&catid={$sub[rs][sub].Category_ID}" class="tooltip" style="text-decoration:none"> Xóa</a>
+			</td>
+			  </tr>  
+			  {/section}
+			{/section}
+			 </tbody>
+			</table>
+<div style="text-align:right"><input name="btnAddNew" type="button" value="Th&ecirc;m danh mục" class="button" onClick="window.location='index.php?module=product&a=product_category_add'"/>
+</div>
+</form>
+{else}
+	 <div class="message information">
+	<h2>Thông báo</h2>
+	<p>Hiện tại chưa có thông tin</p>
+</div>
+			{/if}
+</div></div>

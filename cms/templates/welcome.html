@@ -1,0 +1,79 @@
+<!-- Background wrapper -->
+			<div id="bgwrap">
+		
+				<!-- Main Content -->
+				<div id="content">
+					<div id="main">
+					<h1>Chào, <span>{$smarty.session.logined_information_detail.Admin_Name}</span>!</h1>
+					<p>Bạn muốn bắt đầu từ chức năng nào?</p>
+					
+					<div class="pad20">
+					<!-- Big buttons -->
+						{if $list_module}
+						<ul class="dash">
+							{if $smarty.session.logined_information_detail.IsAdmin eq 1}
+							<li>
+								<a href="?module=cms" title="Danh s&aacute;ch qu&#7843;n tr&#7883;" class="tooltip">
+									<img src="images/16_48x48.png" alt="">
+									<span>Danh s&aacute;ch qu&#7843;n tr&#7883;</span>
+								</a>
+							</li>
+							<li>
+								<a href="?module=cms&a=add_admin" title="Th&ecirc;m qu&#7843;n tr&#7883; vi&ecirc;n" class="tooltip">
+									<img src="images/users_add.png" alt="">
+									<span>Th&ecirc;m qu&#7843;n tr&#7883;</span>
+								</a>
+							</li>
+							<li>
+								<a href="?module=cms&a=system" title="Nh&#7853;t k&yacute; h&#7879; th&#7889;ng" class="tooltip">
+									<img src="images/accessories-text-editor.png" alt="">
+									<span>Nh&#7853;t k&yacute; h&#7879; th&#7889;ng</span>
+								</a>
+							</li>
+							<li>
+								<a href="?module=setting&a=setting_manager" title="C&#7845;u h&igrave;nh" class="tooltip">
+									<img src="images/preferences-system.png" alt="">
+									<span>C&#7845;u h&igrave;nh</span>
+								</a>
+							</li>
+							{/if}
+							{foreach from=$list_module name=list_module_content item=list_module_content}							
+								{$list_module_content.Act}
+							{/foreach}
+							<li>
+								<a href="?module=logout" title="Tho&aacute;t" class="tooltip">
+									<img src="images/Exit.png" alt="">
+									<span>Tho&aacute;t</span>
+								</a>
+							</li>
+						</ul>
+						<!-- End of Big buttons -->
+						{else}
+						<div class="message warning">
+							<h2>Thông báo!</h2>
+							<p>Bạn chưa được cấp quyền quản trị chức năng của Website</p>
+						</div>
+						{/if}
+					</div>				
+					<hr>					
+					<div class="pad20">
+									<table class="fullwidth" border="0" cellpadding="0" cellspacing="0">
+										<tbody>
+										<thead><tr><td colspan="2">Thông tin</td></tr></thead>
+										<tr><td colspan="2"> </td></tr>
+									  	<tr class="odd"><td >IP Server:</td><td>{$ip_server}</td></tr>
+										<tr class="odd"><td>IP truy cập:</td><td>{$ip}</td></tr>
+										<tr class="odd"><td>Tên miền:</td><td>{$domain}</td></tr>
+										<tr class="odd"><td>Đường dẫn website:</td><td>{$path_site}</td></tr>
+										<tr class="odd"><td>Đường dẫn tuyệt đối:</td><td>{$path_physical}</td></tr>
+										<tr class="odd"><td>Giao thức giữa máy chủ và PHP:</td><td>{$protocol}</td></tr>
+										<tr class="odd"><td>Hệ điều hành máy chủ:</td><td>{$os}</td></tr>
+										<tr class="odd"><td>Phiên bản PHP:</td><td>{$apache_version}</td></tr>
+										<tr class="odd"><td>Tên website:</td><td>{$sitename}</td></tr>		
+										<tr class="odd"><td>Tổng quản trị viên:</td><td>{$numadmin}</td></tr>	  	
+										</tbody>
+									</table>
+					</div>					
+					</div>
+				</div>
+				<!-- End of Main Content -->

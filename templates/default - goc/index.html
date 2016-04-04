@@ -1,0 +1,38 @@
+<div id="content">
+                	<div id="block">
+           	    		<h6><img align="absmiddle" src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/ico3.png" />&nbsp;&nbsp;Sản phẩm mới nhất</h6>
+                          <ul id="product">
+						  	{foreach from=$new_product item=new_product name=new_product}
+							{if $smarty.foreach.new_product.iteration % 3 eq 0}
+								<li>
+							{elseif $smarty.foreach.new_product.iteration % 3 eq 1}
+								<li style="margin-left:15px;">
+							{else}
+								<li style="margin-left:15px; margin-right:15px;">
+							{/if} 
+							  <a href="{$smarty.const.URL_HOMEPAGE}/product/view/{$new_product.Category_ID}/{$new_product.Product_ID}/detail.html"><img class="pro" src="{$smarty.const.URL_PRODUCT_THUMB}{$new_product.Image_Name}" alt="" /></a>
+                              <br /><a href="{$smarty.const.URL_HOMEPAGE}/product/view/{$new_product.Category_ID}/{$new_product.Product_ID}/detail.html">{$new_product.Product_Name}</a><br />{if $new_product.Sale neq '' && $new_product.Sale neq 0 }<span class="text14_sale">{$new_product.Price}</span> | <span class="text14">{$new_product.Sale} VNĐ</span>{else}<span class="text14">{$new_product.Price} VNĐ</span>{/if}<br />
+                              <a href="{$smarty.const.URL_HOMEPAGE}/product/basket/{$new_product.Product_ID}.html"><img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/btn_dathang.jpg" /></a></li>
+							 {/foreach}
+							 <div style="text-align:right"><a href="{$smarty.const.URL_HOMEPAGE}/product.html">Xem tiếp &raquo;</a></div>
+                          </ul>
+                </div>
+                <div id="block">
+           	    		<h6><img align="absmiddle" src="images/ico3.png" />&nbsp;&nbsp;Sản phẩm ưa thích</h6>
+                          <ul id="product">
+                           {foreach from=$hot_product item=hot_product name=hot_product}
+							{if $smarty.foreach.hot_product.iteration % 3 eq 0}
+								<li><font color="#990000">
+							{elseif $smarty.foreach.hot_product.iteration % 3 eq 1}
+								<li style="margin-left:15px;">
+							{else}
+								<li style="margin-left:15px; margin-right:15px;">
+							{/if} 
+							  <a href="{$smarty.const.URL_HOMEPAGE}/product/view/{$hot_product.Category_ID}/{$hot_product.Product_ID}/detail.html"><img class="pro" src="{$smarty.const.URL_PRODUCT_THUMB}{$hot_product.Image_Name}" alt="" /></a>
+                              <br /><a href="{$smarty.const.URL_HOMEPAGE}/product/view/{$hot_product.Category_ID}/{$hot_product.Product_ID}/detail.html">{$hot_product.Product_Name}</a><br />{if $hot_product.Sale neq '' && $hot_product.Sale neq 0 }<span class="text14_sale">{$hot_product.Price}</span> | <span class="text14">{$hot_product.Sale} VNĐ</span>{else}<span class="text14">{$hot_product.Price} VNĐ</span>{/if}<br />
+                              <a href="{$smarty.const.URL_HOMEPAGE}/product/basket/{$hot_product.Product_ID}.html"><img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/btn_dathang.jpg" /></a></li>
+							 {/foreach}
+							 <div style="text-align:right"><a href="">Xem tiếp &raquo;</a></div>
+                          </ul>
+                </div>
+                </div><!--End #content-->  

@@ -1,0 +1,15 @@
+</div><!--End #wrap_content-->
+        </div><!--End #wrapper-->        
+    </div><!--End #page-->
+	<div id="footer">
+        	<ul class="nav_footer">
+				<li><a href="{$smarty.const.URL_HOMEPAGE}/home.html">Trang chủ</a></li>
+				{foreach from=$rs name=rs item=rs}
+            	<li><a href="{$smarty.const.URL_HOMEPAGE}/product/cat/{$rs.Category_ID}/category.html">{$rs.Category_Name}</a></li>
+				{/foreach}
+                <li><a href="{$smarty.const.URL_HOMEPAGE}/contact.html">Liên hệ</a></li>
+            </ul>
+            <p>CopyrightDongA&copy;2011.All right reserved<br /><span>Design by Friendsdesign.vn</span></p></div><!--End #footer-->
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{literal}
+<script language="javascript">
+function get_quantity(id) {
+	var catid = {/literal} {$smarty.get.catid}; {literal}
+	var url = {/literal} "{$smarty.const.URL_HOMEPAGE}"; {literal}
+	var qty = $("#qtt"+id).val();
+	$("#link" + id).attr("href", url + "/product/basket/" + catid + "/" + qty + "/" + id + ".html");
+}
+</script>
+{/literal}
+<div class="product">
+				<h3><span> {$smarty.const._PRODUCTS} </span></h3>
+				<div class="frame_product" align="center">
+                	<h2><span>{$cat_title.Category_Name}</span></h2>
+                    <table border="0" width="90%" cellpadding="10" cellspacing="5" style="border-collapse:collapse">
+                    	{section name="ls" loop=$ls}
+                        <tr>
+                        	<td width="120"><img border="1" src="{$smarty.const.URL_HOMEPAGE}/upload/product_thumb/{$ls[ls].Image_Name}" width="118" height="78" /></td>
+                            <td width="150" style="padding-left: 5px;" valign="top"><b>{$ls[ls].Product_Name}</b><br />{$ls[ls].Description}<br />{$smarty.const._PRICE}: {$ls[ls].Price} {$smarty.const._CURRENCY}</td>
+                            <td ><select id="qtt{$ls[ls].Product_ID}" style="width: 50px" name="quantity" onchange="get_quantity({$ls[ls].Product_ID});">
+								<option>0</option>
+                                <option selected="selected">1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+                                <option>5</option>
+								<option>6</option>
+								<option>7</option>
+								<option>8</option>
+                                <option>9</option>
+								<option>10</option>
+							</select></td>
+                            <td class="pro"><a id="link{$ls[ls].Product_ID}" href="{$smarty.const.URL_HOMEPAGE}/product/basket/{$smarty.get.catid}/1/{$ls[ls].Product_ID}.html" class="button"><span>{$smarty.const._TAKEIT}</span></a></td>
+                        </tr>
+                        <tr>
+                        	<td colspan="4"><div style="height: 10px;">&nbsp;</div></td>
+                        </tr>
+                        {/section}
+                    </table>
+    			</div>
+                <div style="padding-bottom: 5px;" align="center">{$paging}</div>
+			</div>
+		 </div><!--End #main-->
+		 <div class="bg_bottom"></div>

@@ -1,0 +1,17 @@
+<div class="product">
+    <h3><span> {$smarty.const._ABOUTUS} </span></h3>
+    <div class="infor_samecat" style="padding-left: 30px">&raquo; {$catname.Name}</div>
+    <div class="frame_product" align="center">
+        <table border="0" width="90%" cellpadding="10" cellspacing="5" style="border-collapse:collapse; font-size: 12px;">
+            {section name="n" loop=$list}
+            <tr>
+                <td width="76" style="padding-bottom:7px"><a href="{$smarty.const.URL_HOMEPAGE}/information/detail/{$list[n].Information_ID}/{$list[n].Title_r}.html"><img style="border: 1px solid #000000" src="{$smarty.const.URL_HOMEPAGE}/upload/news_thumb/{$list[n].Image}" /></a></td>
+                <td valign="top" style="padding-left: 10px"><span class="news_title" style="padding-bottom: 3px;"><a href="{$smarty.const.URL_HOMEPAGE}/information/detail/{$list[n].Information_ID}/{$list[n].Title_r}.html">{$list[n].Title}</a></span><br />{$list[n].Summary}</td>
+            </tr>
+            {/section}
+        </table>
+    </div>
+    <div style="padding-bottom: 5px;" align="center">{$paging}</div>
+</div>
+</div><!--End #main-->
+<div class="bg_bottom"></div>

@@ -1,0 +1,108 @@
+<link href="{$smarty.const.URL_HOMEPAGE}/css/examples.css" rel="stylesheet" type="text/css">
+<div class="product">
+	<h3><span> {$smarty.const._PAYMENT_NGANLUONG} </span></h3>
+	<div class="frame_product" align="center">
+    	<table width="100%" border="0" cellspacing="0" cellpadding="0"><tbody>                             
+                              <tr>
+                             	<td colspan="5" valign="top" align="center">
+                                              <table width="80%" border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse; border-color:#000;">
+                                               <tr bgcolor="#96DCEB">                                               												
+                                                  <td width="10"><b>{$smarty.const._STT}</b></td>
+                                                  <td width="" style="text-align:center"><b>{$smarty.const._PRODUCT_NAME}</b></td>
+                                                  <td width="" style="text-align:center"><b>{$smarty.const._PRODUCT_CODE}</b></td>											
+                                                  <td width="" style="text-align:center"><b>{$smarty.const._PRICE}</b></td>
+                                                  <td width="" style="text-align:center"><b>{$smarty.const._AMOUNT}</b></td>
+                                                  <td width="" style="text-align:center"><b>{$smarty.const._TOTAL}</b></td>
+                                                </tr>
+                                                {foreach name="detail" item=detail from=$detail}
+                                                <tr>
+                                                	<td align="center">{$smarty.foreach.detail.iteration}</td>
+                                                    <td>{$detail.Product_Name}</td>
+                                                    <td>{$detail.Product_Code}</td>
+                                                    <td align="right">{$detail.Price} {$smarty.const._CURRENCY}</td>
+                                                    <td align="center">{$detail.Amount}</td>
+                                                    <td align="right">{$detail.Money} {$smarty.const._CURRENCY}</td>
+                                                </tr>                                                    
+                                                {/foreach}
+                                                <tr height="27px;">
+                                                  <td colspan="5" align="right" valign="middle">
+                                                        <span><b>{$smarty.const._SUM_TOTAL}:&nbsp;</b></span> 
+													</td>
+												 <td align="right" valign="middle" id="right_pad" class="dausao"><b>
+												 <span>&nbsp;{if $total_money eq 0}Call{else}{$total_money} VNĐ{/if}</span>
+                                                  </b></td>
+                                                </tr>																								
+                                            </table>                                     
+                                </td>
+                              </tr></tbody></table><br />
+<table width="60%" border="0" cellspacing="0" cellpadding="0">                             
+							 <tr>
+                              	<td colspan="5" valign="top" align="left" width="">
+                                	<table width="550px" border="0" cellpadding="0" cellspacing="0">
+                                      <tr>
+                                      	<td width="11"></td>
+                                        <td valign="top">{$smarty.const._PAY_TYPE}:</td>
+                                        <td><input id="pay_type" checked="checked" type="radio" class="radioBtnClass" name="pay_type" value="2" /> {$smarty.const._PAY_NGANLUONG}
+                                        </td>
+                                      </tr> 
+                                      <tr>
+                                        <td width="11"></td>
+                                        <td width="151" align="left" valign="middle" class="link_dathang">{$smarty.const._FULL_NAME}:<span class="dausao">*</span></td>
+                                        <td colspan="4"><input name="fullname" id="fullname" value="{$rs.Full_Name}" type="text" class="textbox_dh" maxlength="100" readonly /></td>
+                                      </tr>                                     
+                                      
+                                      <tr><td colspan="6" height="5"></td></tr>
+                                      
+                                      <tr>
+                                        <td width="11">&nbsp;</td>
+                                        <td width="151" align="left" valign="middle" class="link_dathang">{$smarty.const._ADDRESS}:<span class="dausao">*</span></td>
+                                        <td colspan="4"><input name="address" id="address" value="{$rs.Address}" type="text" class="textbox_diachi" maxlength="255" readonly /></td>
+                                      </tr>
+                                      
+                                      <tr><td colspan="6" height="5"></td></tr>
+                                      
+                                      <tr>
+                                        <td width="11">&nbsp;</td>
+                                        <td width="151" align="left" valign="middle" class="link_dathang">{$smarty.const._EMAIL}:<span class="dausao">*</span></td>
+                                        <td colspan="4"><input name="email" id="email" value="{$rs.Email}" type="text" readonly class="textbox_dh" maxlength="50"/></td>
+                                      </tr>
+                                      
+                                      <tr><td colspan="6" height="5"></td></tr>
+                                      
+                                      <tr>
+                                        <td width="11">&nbsp;</td>
+                                        <td width="151" align="left" valign="middle" class="link_dathang">{$smarty.const._PHONE}:<span class="dausao">*</span>                                                        </td>
+                                        <td colspan="4"><input name="phone" id="phone" value="{$rs.Phone}" type="text" class="textbox_dh" readonly  maxlength="20"/></td>
+                                      </tr>                                                                                                                                                    
+                                      <tr><td colspan="6" height="5"></td></tr>                                         
+                                                      <tr><td colspan="6" height="10"></td></tr>
+                                                      
+                                                      <tr>
+                                                        <td width="11">&nbsp;</td>
+                                                        <td width="151" align="left" valign="top" class="link_dathang">{$smarty.const._REQUIRES}: </td>
+                                       				  <td colspan="">
+                                                            <textarea name="content_1" id="content_1" cols="45" rows="3" readonly>{$rs.Requirement}</textarea>
+                                                        </td>
+                                                      </tr>
+                                                      
+                                                      <tr><td colspan="6" height="5"></td></tr>                                                  
+                                                      <tr><td colspan="6" height="5"></td></tr>
+                                                      
+                                                      <tr>
+                                                        <td width="11">&nbsp;</td>
+                                                        <td width="151">&nbsp;</td>
+                                                        <td colspan="4">                                                        	
+                                                        	<!--<input type="image" value="{$smarty.const._ORDER}&nbsp;&nbsp;&nbsp;" class="btn_sm"/>
+															<input type="hidden" value="1" name="send" id="send" />-->
+                                                            <div class="pro2">
+                                                            <a href="{$url}" class="button"><span>{$smarty.const._PAYMENT_NGANLUONG}</span></a>
+                                                            </div>
+                                                        </td>
+                                                      </tr>
+                                                      <tr><td colspan="6" height="10"></td></tr>
+                                                  </table>
+                                </td>
+                              </tr>                                                   
+                            </table>                               
+    </div>
+</div>						

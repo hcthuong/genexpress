@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$title}</title>
+<link rel="stylesheet" media="screen" href="./css/reset.css" />
+<link rel="stylesheet" media="screen" href="./css/grid.css" />
+<link rel="stylesheet" media="screen" href="./css/style.css" />
+<link rel="stylesheet" media="screen" href="./css/messages.css" />
+<link rel="stylesheet" media="screen" href="./css/forms.css" />
+<link rel="stylesheet" media="screen" href="./css/tables.css" />
+
+<!--[if lt IE 8]>
+<link rel="stylesheet" media="screen" href="http://themes.vivantdesigns.com/streamlined/css/ie.css" />
+<![endif]-->
+
+<script type="text/javascript" charset="utf-8" src="../jscripts/jquery-1.3.2.min.js"></script>
+
+<script src="./js/jquery.tools.min.js"></script>
+<script src="./js/jquery.tables.js"></script>
+
+<script type="text/javascript" src="./js/global.js"></script>
+<script type="text/javascript" src="./js/js.js"></script>
+<script type="text/javascript" src="../jscripts/jquery-impromptu.1.5.js"></script>
+
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="http://themes.vivantdesigns.com/streamlined/js/html5.js"></script>
+<script type="text/javascript" src="http://themes.vivantdesigns.com/streamlined/js/PIE.js"></script>
+<script type="text/javascript" src="http://themes.vivantdesigns.com/streamlined/js/IE9.js"></script>
+<script type="text/javascript" src="http://themes.vivantdesigns.com/streamlined/js/ie.js"></script>
+<![endif]-->
+
+<meta charset="UTF-8"></head>
+<body>
+<div id="wrapper">
+        <header>
+                <div class="container_8 clearfix">
+                <h1 class="grid_1">vData CMS</h1>
+                <nav class="grid_5">
+                    <ul class="clearfix">
+				
+                           <li class="action"><a href="{$smarty.const.URL_HOMEPAGE}/cms" class="button bluebutton"><span class="nav-icon icon-house"></span>Trang Chủ</a>
+                       <!--  <li class="action">
+                          {if $oBlock eq 0}  <a href="?module=block&tpl={$template}" class="button bluebutton"><span class="nav-icon icon-tick"></span>Block</a>{/if}
+                         
+                        </li>
+                           <li class="action"><a href="{$smarty.const.URL_HOMEPAGE}/cms" class="button bluebutton"><span class="nav-icon icon-note"></span>Ghi Chú</a>
+
+
+                  <li class="action"><a href="" class="has-popupballoon button bluebutton"><span class="nav-icon icon-time"></span>BackUP</a>
+                            <div class="popupballoon top">
+                          
+                                 <button class="button button-orange">Tạo Backup Mới</button>
+
+                                <button class="button button-gray close">Restore Backup Cũ</button>
+                            </div>
+                        </li>-->
+
+                        <li class="fr"><a href="#">{$smarty.session.logined_information_detail.Admin_Name}<span class="arrow-down"></span></a>
+                            <ul>
+						
+                                <li><a href="">Thông tin tài khoản</a></span></li>
+                                <li><a href="">Thoát</a></li>
+                      
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+        </header>
+        
+        <section>
+            <div class="container_8 clearfix">
+
+                <!-- Sidebar -->
+				 		<script type="text/javascript" src="resources/scripts/simpla.jquery.configuration.js"></script>
+
+ 
+ 
+ <aside class="grid_1">
+ <nav class="subnav">
+                       
+						
+                        <ul class="clearfix" id="main-nav">
+				
+		{if $smarty.session.logined_information_detail.IsAdmin eq 1}	
+
+    	<li  class="background_menu_left"><a href="" >Hệ thống quản trị</a>	
+		{if $module eq '' or $module eq 'homepage' or $module eq 'cms' or $module eq 'setting'}  
+	
+            	<li class="children"><a href=""   >Danh sách quản trị viên</a></li>
+                <li class="children"><a href="">Thêm quản trị viên</a></li>
+                <li class="children"><a href="">Cấu hình</a></li>
+                <li class="children"><a href="">Nhật ký hệ thống</a></li>
+
+	{/if}</li>	
+		{/if}
+		{foreach from=$list_module name=list_module item=list_module}
+		{if $list_module.Module_Code eq $module}
+			{$list_module.Description}
+		{else}
+			{$list_module.Summary}
+		{/if}
+		{/foreach}
+                   
+ </ul>
+		
+					
+
+		
+					
+					
+					
+					
+					
+					
+					
+					
+					</nav>
+                </aside>
+
+
+
+
+                <!-- Main Section -->
+
+                <section class="main-section grid_7">
+
+                    <div class="main-content">
+                        <header>
+                            <!--<ul class="action-buttons clearfix fr">
+                                <li><a href="./documentation/index.html" class="button button-gray no-text help" rel="#overlay">Help<span class="help"></span></a></li>
+                            </ul>-->
+
+                            <h2>
+                                CMS Admin Control
+                            </h2>
+                        </header>
+                        <section class="container_6 clearfix">
+                            <div class="grid_6">
+        
+                                <hr />
+								   <table class="datatable" width="100%">
+
+			  <tr >    	
+				<td colspan="2"> </td>
+			  </tr>
+			  <tr>
+			  	<td >IP Server:</td>
+				<td>{$ip_server}</td>
+			  </tr>
+			  <tr>
+			  	<td>IP truy cập:</td>
+				<td>{$ip}</td>
+			  </tr>
+			  <tr>
+			  	<td>Tên miền:</td>
+				<td>{$domain}</td>
+			  </tr>
+			 <tr>
+			  	<td>Đường dẫn website:</td>
+				<td>{$path_site}</td>
+			  </tr>
+			  <tr>
+			  	<td>Đường dẫn tuyệt đối:</td>
+				<td>{$path_physical}</td>
+			  </tr>
+			 <tr>
+			  	<td>Giao thức giữa máy chủ và PHP:</td>
+				<td>{$protocol}</td>
+			  </tr>
+			  <tr>
+			  	<td>Hệ điều hành máy chủ:</td>
+				<td>{$os}</td>
+			  </tr>
+			 <tr>
+			  	<td>Phiên bản PHP:</td>
+				<td>{$apache_version}</td>
+			  </tr>
+			  <tr>
+			  	<td>Tên website:</td>
+				<td>{$sitename}</td>
+			  </tr>		
+			 <tr>
+			  	<td>Tổng quản trị viên:</td>
+				<td>{$numadmin}</td>
+			  </tr>	  			  
+</table>
+
+                            </div>
+                          
+                        </section>
+                    </div>
+
+                </section>
+
+ 
+            </div>
+            <div id="push"></div>
+
+        </section>
+    </div>
+    
+    <footer>
+        <div id="footer-inner" class="container_8 clearfix">
+            <div class="grid_8">
+                <span class="fr">vData | &copy; 2010. All rights reserved</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

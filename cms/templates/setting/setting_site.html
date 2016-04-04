@@ -1,0 +1,66 @@
+﻿{literal}
+<script language="javascript">
+var r={
+  'notnumbers':/[^\d]/g
+}
+function valid(o,w){
+  o.value = o.value.replace(r[w],'');
+}
+</script>
+{/literal}
+<!-- Background wrapper -->
+			<div id="bgwrap">		
+				<!-- Main Content -->
+				<div id="content">
+					<div id="main">
+						<h1>Thông tin hệ thống</h1>
+							<div class="pad20">
+					<!-- Big buttons -->
+							<form name="frm_setting_site" method="post" enctype="multipart/form-data">
+							<!-- Fieldset -->
+							<fieldset>                
+								<legend>Cấu hình hệ thống</legend>
+								<p><label for="lf">Tên site: </label>
+									<input type="text" name="sitename" value="{$sitename}" maxlength="200" size="30"/>
+								</p>
+								<p><label for="lf">Hot Line: </label>
+									<input type="text" name="hot_line" value="{$hot_line}" maxlength="20" size="10" />
+								</p>
+								<p><label for="lf">Email liên hệ: </label>
+									<input type="text" name="email" value="{$email}" maxlength="100" size="30" />
+								</p>
+								<p><label for="lf">Giao diện đang sử dụng: </label>
+									<select name="template" id="template" class="dropdown" >
+										{foreach from=$list_template name=list_template item=list_template}			
+										<option value="{$list_template}" {if $template eq $list_template} selected="selected"{/if}>{$list_template}</option>
+										{/foreach}			
+									</select>
+								</p>
+								<p><label for="lf">Phân trang nhật ký hệ thống: </label>								
+									<input value="{$diary}" name="diary" id="diary" onkeyup="valid(this,'notnumbers')" onblur="valid(this,'notnumbers')" size="1" maxlength="2"/>
+								</p>
+								<p><label for="lf" style="vertical-align:top">Loại file được upload:<br />(Phân cách bởi dấu ,)</label>
+									<textarea cols="50" rows="2" name="files_mime">{$files_mime}</textarea>
+								</p>
+								<p><label for="lf" style="vertical-align:top">Phần mở rộng được upload:<br />(Phân cách bởi dấu ,)</label>
+									<textarea cols="50" rows="2" name="extension">{$extension}</textarea>
+								</p>								
+								<p><label for="lf" >Dung lượng tối đa tập tin hình ảnh: </label>
+									<input value="{$max_size}" name="max_size"  onkeyup="valid(this,'notnumbers')" onblur="valid(this,'notnumbers')" size="5" maxlength="7">&nbsp;bytes
+								</p>	
+								<p><label for="mf" style="vertical-align:top" >Ngưng hoạt động: <br />
+									<input type="radio" name="disable_site" value="0" {if $site_disable eq 0} checked {/if}>Không&nbsp;
+          							<input type="radio" name="disable_site" value="1" {if $site_disable eq 1} checked {/if}>Có	
+									</label>
+        							<textarea cols="50" rows="6" name="disable_message">{$message_disable}</textarea>							
+								</p>												 
+								<p>								
+									<input type="submit" class="button"  name="submit" value="Lưu"/>
+								</p>		  
+							</fieldset>
+								<!-- End of fieldset -->		
+							</form>
+							</div> 
+					</div>
+				</div>
+				<!-- End of Main Content -->  

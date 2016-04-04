@@ -1,0 +1,35 @@
+<!-- Background wrapper -->
+			<div id="bgwrap">		
+				<!-- Main Content -->
+				<div id="content">
+					<div id="main">
+						<h1>Quản lý quản trị viên</h1>
+							<div class="pad20">								
+					<!-- Big buttons -->
+							<form name="frm_admin_edit" method="post" enctype="multipart/form-data">
+							<!-- Fieldset -->
+							<fieldset>                
+								<legend>Thông tin tài khoản</legend>
+								<p><label for="sf">Tên đăng nhập: </label>{$rs.Admin_Login}
+								</p>
+								<p><label for="mf">Họ và tên: </label>{$rs.Admin_Name}
+								</p>
+								<p><label for="sf">Email: </label>{$rs.Email}
+								</p>
+								<p><label for="mf" style="vertical-align:top">Quyền quản trị: </label>
+									<select class="dropdown" name="per[]" id="per[]" multiple>					
+										{foreach name=list_module_norole from=$list_module_norole item=list_module_norole}
+										<option value="{$list_module_norole.Module_ID}" selected>{$list_module_norole.Module_Name}</option>
+										{/foreach}	
+									</select>
+								</p>																	 
+								<p>
+									<input type="submit" class="button"  name="submit" value="Lưu"/>
+								</p>		  
+							</fieldset>
+								<!-- End of fieldset -->		
+							</form>
+							</div> 
+					</div>
+				</div>
+				<!-- End of Main Content -->

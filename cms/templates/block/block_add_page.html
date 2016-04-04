@@ -1,0 +1,35 @@
+<!-- Background wrapper -->
+			<div id="bgwrap">		
+				<!-- Main Content -->
+				<div id="content">
+					<div id="main">
+						<h1>Thông tin Block</h1>
+							<div class="pad20">
+					<!-- Big buttons -->
+							<form name="frm_admin_edit" method="post" enctype="multipart/form-data">
+							<!-- Fieldset -->
+							<fieldset>   
+							<legend>Thông tin</legend>
+								<p><label for="sf">Giao diện: </label>{$block_info.Template}
+								</p>
+								<p><label for="sf">Tiêu đề: </label>{$block_info.Title}</p>  
+								<p><label for="sf">Tập tin nội dung: </label>{$block_info.Source}</p> 
+								<p><label for="sf" >Tập tin thể hiện: </label>{$block_info.Style}</p>   
+								<p><label for="sf" >Vị trí: </label>{if $block_info.Position eq 2}Trái{elseif $block_info.Position eq 5}Phải{/if}</p>   		
+								<p><label for="sf" >Thứ tự: </label>{$block_info.St}</p>   		
+								<p><label for="sf"  style="vertical-align:top">Trang thể hiện: </label>
+									<select name="per[]" id="per[]" multiple style="width:150px;">					
+										{foreach name=module_l from=$module_l item=module_l}
+										<option value="{$module_l.Module_ID}" selected>{$module_l.Module_Name}</option>
+										{/foreach}	
+									</select>
+								</p>   						
+								<p>								
+									<input type="submit" class="button"  name="submit" value="Xác nhận"/>
+								</p>		  
+							</fieldset>
+								<!-- End of fieldset -->		
+							</form>
+							</div> 
+					</div>
+				</div>	

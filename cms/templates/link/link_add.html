@@ -1,0 +1,70 @@
+<script type="text/javascript" src="../jscripts/jquery.lightbox-0.5.min.js"></script>
+<link href="../css/jquery.lightbox-0.5.css" rel="stylesheet" type="text/css">
+{literal}
+<script type="text/javascript">
+$(function() {
+        $('#gallery a').lightBox();
+});
+</script>
+{/literal}
+<!-- Background wrapper -->
+			<div id="bgwrap">		
+				<!-- Main Content -->
+				<div id="content">
+					<div id="main">
+						<h1>Thêm Logo - Banner quảng cáo</h1>
+							<div class="pad20">
+					<!-- Big buttons -->
+							<form name="frm_link_add" method="post" enctype="multipart/form-data" onSubmit="return check_value(frm_link_add);">
+							<!-- Fieldset -->
+							<fieldset>   
+							<legend>Thông tin</legend>
+								<p><label for="sf">Tên cty/khách hàng: </label>
+									<input type="text" name="title"  class="mf" value="{$smarty.session.link.title}" id="title" maxlength="200"/><font color="#FF0000"><b>*</b></font>
+								</p>
+								<p><label for="sf" style="vertical-align:top" >Liên kết Web: </label>
+									<input type="text" name="url" class="mf" value="http://{$smarty.session.link.url}" id="url" maxlength="200"/><font color="#FF0000"><b>*</b></font>
+								</p>  
+								<p><label for="sf" style="vertical-align:top" >Hình minh họa: </label>
+									<input type="file" name="filename" class="mf" /><font color="#FF0000"><b>*</b></font>
+								</p> 
+								<p><label for="sf" style="vertical-align:top" >Vị trí: </label>
+									<select name="position" id="postiton">
+										<option value="1">Ngang (Dưới banner)</option>
+										<option value="2">Bên trái</option>									
+									</select>
+								</p>   							
+								<p>								
+									<input type="submit" class="button"  name="submit" value="Lưu"/>
+								</p>		  
+							</fieldset>
+								<!-- End of fieldset -->		
+							</form>
+							</div> 
+					</div>
+				</div>	  
+{literal}
+<script type="text/javascript" charset="utf-8">	
+function check_value(form)
+{
+	if(form.title.value=="")
+	{
+		form.onclick = $.prompt('Vui lòng nhập tiêu đề!!!');
+		form.title.focus();
+		return false;
+	}
+	if(form.url.value=="")
+	{
+		form.onclick = $.prompt('Vui lòng nhập địa chỉ web!!!');
+		form.url.focus();
+		return false;
+	}
+	if(form.filename.value=="")
+	{
+		form.onclick = $.prompt('Vui lòng chọn logo - banner quảng cáo!!!');
+		form.filename.focus();
+		return false;
+	}		
+}
+</script> 
+{/literal}

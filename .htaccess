@@ -1,0 +1,36 @@
+Options All -Indexes
+RewriteEngine On
+#AddOutputFilterByType DEFLATE text/html text/css application/x-javascript
+
+RewriteRule home.html index.php?mod=home
+RewriteRule home/lang/en.html index.php?language=en
+RewriteRule home/lang/vi.html index.php?language=vi
+RewriteRule contact.html index.php?mod=contact
+RewriteRule search.html index.php?mod=search
+RewriteRule ^search/search.html index.php?mod=search&a=search
+RewriteRule news.html index.php?mod=news
+RewriteRule ^news/home/paging(.*).html index.php?mod=news&a=home&page=$1
+RewriteRule ^news/view/(.*)/(.*).html index.php?mod=news&a=view&id=$1&str=$2
+RewriteRule information.html index.php?mod=information
+RewriteRule ^information/view/(.*)/paging(.*).html index.php?mod=information&a=view&cid=$1&page=$2
+RewriteRule ^information/view/(.*)/(.*).html index.php?mod=information&a=view&cid=$1&str=$2
+RewriteRule ^information/detail/(.*)/(.*).html index.php?mod=information&a=detail&id=$1&str=$2
+RewriteRule product.html index.php?mod=product
+RewriteRule ^product/home/paging(.*).html index.php?mod=product&a=home&page=$1
+RewriteRule ^product/cat/(.*)/(.*).html index.php?mod=product&a=cat&catid=$1&str=$2
+RewriteRule ^product/complete/(.*)/complete.html index.php?mod=product&a=complete&oid=$1&str=$2
+RewriteRule ^product/detail/(.*)/(.*).html index.php?mod=product&a=detail&pid=$1&str=$2
+RewriteRule ^product/catpage/(.*)/paging(.*).html index.php?mod=product&a=cat&catid=$1&page=$2
+RewriteRule ^product/view/(.*)/(.*)/(.*).html index.php?mod=product&a=view&catid=$1&id=$2&str=$3
+RewriteRule ^product/viewpage/(.*)/(.*)/paging(.*).html index.php?mod=product&a=view&catid=$1&id=$2&page=$3
+RewriteRule ^product/comment/(.*)/(.*)/(.*)/(.*).html index.php?mod=product&a=comment&catid=$1&id=$2&status=$3&str=$4
+RewriteRule ^product/search.html index.php?mod=product&a=search
+RewriteRule ^product/searchpage/paging(.*).html index.php?mod=product&a=search&page=$1
+RewriteRule ^product/basket/(.*)/(.*)/(.*).html index.php?mod=product&a=basket&catid=$1&qty=$2&id=$3
+RewriteRule ^product/cart.html index.php?mod=product&a=cart
+RewriteRule ^product/update_cart.html index.php?mod=product&a=update_cart
+RewriteRule ^product/removecart.html index.php?mod=product&a=removecart
+RewriteRule ^product/order.html index.php?mod=product&a=order
+RewriteRule ^product/order_detail.html index.php?mod=product&a=order_detail
+RewriteRule ^product/order_confirm/(.*)/confirm.html index.php?mod=product&a=order_confirm&id=$1&str=$2
+RewriteRule large_image/(.*).html index.php?mod=large_image&id=$1

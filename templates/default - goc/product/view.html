@@ -1,0 +1,169 @@
+<script type="text/javascript" src="{$smarty.const.URL_HOMEPAGE}/jscripts/jquery-impromptu.1.5.js"></script>
+<link href="{$smarty.const.URL_HOMEPAGE}/css/examples.css" rel="stylesheet" type="text/css">
+<link type="text/css" href="{$smarty.const.URL_HOMEPAGE}/css/jquery.simpledialog.0.1.css" rel="stylesheet" />			
+<script type="text/javascript" src="{$smarty.const.URL_HOMEPAGE}/jscripts/jquery.simpledialog.0.1.min.js"></script>
+{literal}
+<script>
+$(document).ready(function() {	
+	$('#simpledialoga').simpleDialog();
+	$(".comment").hide();	
+	$(".close_comment").hide();
+	$(".show_comment").click(function () {		
+		$(".show_comment").hide();
+		$(".comment").show();
+		$(".close_comment").show();
+	}); 
+	$(".close_comment").click(function () {		
+		$(".show_comment").show();
+		$(".comment").hide();
+		$(".close_comment").hide();
+	});
+})
+</script>
+{/literal}
+<div id="content">
+                	<div id="block">
+           	    		<h6><img align="absmiddle" src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/ico3.png" />&nbsp;&nbsp;{if $cat_info.Category_Name_Path neq ''}<a href="{$smarty.const.URL_HOMEPAGE}/product/cat/{$cat_info.Parent_ID}.html"><font color="#ffff99">{$cat_info.Category_Name_Path}</font></a>{/if}&nbsp; &raquo;  &nbsp;<a href="{$smarty.const.URL_HOMEPAGE}/product/cat/{$cat_info.Category_ID}.html"><font color="#ffff99">{$cat_info.Category_Name}</font></a></h6>
+						<ul id="view">
+							<li>
+								<table width="100%" style="font-size:12px;" align="center">
+									<tr>
+										<td width="210" align="center">
+										<table width="100%" align="center"><tr><td width="100%" align="center">{if $info.Image_Name neq ''}<a href="{$smarty.const.URL_PRODUCT}/{$info.Image_Name}" id="simpledialoga"><img src="{$smarty.const.URL_PRODUCT_THUMB}{$info.Image_Name}" width="200" /></a>{else}<img src="{$smarty.const.URL_HOMEPAGE}/upload/no_image.gif" width="200" />{/if}</td></tr>
+										<tr><td style="font-size:15px;" align="center" width="100%" > 
+										<img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/like.gif" title="{$like} {$smarty.const._LIKE}" width="12px">{$like}&nbsp;&nbsp;&nbsp;&nbsp;<img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/unlike.gif" width="12px" title="{$unlike} {$smarty.const._UNLIKE}">{$unlike}</td></tr></table></td>
+										<td align="left" valign="top"><font style="font-size:16px; font-weight:bold">{$info.Product_Name}</font><br /><br/><b>{$smarty.const._PRODUCT_CODE}:</b> {$info.Product_Code}<br /><br /><b>{$smarty.const._PRICE}:</b> 
+							{if $info.Sale neq '' && $info.Sale neq 0}<span class="text14_sale">{$info.Price}</span> | <span class="text14">{$info.Sale} VN&#272;</span>{else}<span class="text14">{$info.Price} VN&#272;</span>{/if}<br /><br />
+										<a href="{$smarty.const.URL_HOMEPAGE}/product/basket/{$info.Product_ID}.html"><img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/btn_dathang.jpg" /></a>	
+										</td>
+									</tr>
+									<tr><td colspan="2" >{$info.Description}</td></tr>
+									<tr><td colspan="2" align="right"><a class="show_comment">{$smarty.const._COMMENT}</a><a class="close_comment">{$smarty.const._CLOSE}</a></td></tr>
+									<tr class="comment"><td colspan="2" >
+										<form name="frm_contact" method="post" enctype="multipart/form-data" onSubmit="return check_contact(frm_contact);">
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">                              
+										  <tr>
+											<td colspan="5" valign="top" align="left">                                													  <table width="100%" border="0" cellpadding="0" cellspacing="0" >                                                                                            
+													  <tr>
+														<td  colspan="2" height="10" style="border-top:#480800 solid 1px;">&nbsp;</td>
+													  </tr>
+													  <tr>
+														<td align="right" valign="middle"><b>{$smarty.const._FULL_NAME}:</b><span class="dausao">*</span>&nbsp;</td>
+														<td><input name="fullname" id="fullname" type="text" class="textbox_dh" maxlength="100"/></td>
+													  </tr>                                          
+													   <tr><td colspan="2" height="5"></td></tr>                                          
+													  <tr>                                            
+														<td align="right" valign="middle"><b>{$smarty.const._EMAIL}:</b><span class="dausao">*</span>&nbsp;</td>
+														<td><input name="email" id="email" size="20" type="text" class="textbox_dh" maxlength="100"/></td>
+													  </tr>                                          
+													  <tr><td colspan="2" height="5"></td></tr>
+													  <tr>
+														<td align="right" valign="top"><b>{$smarty.const._CONTENT}:</b><span class="dausao">*</span>&nbsp;</td>
+														<td>
+														 <textarea name="description" id="description" cols="45" rows="10"></textarea></td>
+													  </tr>
+													<tr><td colspan="2" height="5"></td></tr>
+													<tr>
+														<td align="right" valign="top"></td>
+														<td><select name="comment_status">
+														<option value="1">{$smarty.const._LIKE}</option>
+														<option value="2">{$smarty.const._UNLIKE}</option>
+														<option value="0">{$smarty.const._NO_COMMENT}</option>
+														 </select></td>
+													  </tr>
+													  <tr><td colspan="2" height="5"></td></tr>                                          
+													  <tr>
+														<td align="right" valign="middle"><b>{$smarty.const._VERIFY_CODE}:</b><span class="dausao">*</span>&nbsp;</td>
+														<td>
+															<table width="235" border="0" cellpadding="0" cellspacing="0">
+															  <tr>
+																<td width="20"><input type="text" name="txt_verify_register" id="txt_verify_register" maxlength="6" size="4"></td>
+																<td width="1">&nbsp;</td>
+																<td width="174"><img src="{$smarty.const.URL_HOMEPAGE}/antiflood.php" ></td>
+															  </tr>
+															</table>                                           
+													   </td>
+													  </tr>                                          
+													  <tr><td colspan="2" height="10"></td></tr>                                          
+													  <tr>
+														<td>&nbsp;</td>
+														<td><input type="submit" name="submit" value="{$smarty.const._SEND}" /></td>
+													  </tr>
+													  <tr>
+														<td colspan="2">&nbsp;</td>
+													  </tr>
+																				   
+												  </table>
+											</td>
+										  </tr>                                                            
+									  </table>
+									  </form>
+									</td></tr>			
+									<td  colspan="2" height="10" style="border-top:#480800 solid 1px;">&nbsp;</td>						
+									<tr><td colspan="2">
+										<table width="100%">
+											{foreach from=$comment_list name=comment_list item=comment_list}
+											<tr><td align="left"><b>{$comment_list.Full_Name} - {$comment_list.Email}</b></td>
+											<td align="right"><i>{$comment_list.Create_Time_Change}</i></td></tr>
+											<tr><td colspan="2">{$comment_list.Description}</td></tr>
+											{/foreach}
+										</table>
+									</td></tr>
+									{if $paging}
+									<td  colspan="2" height="10" style="border-top:#480800 solid 1px;">&nbsp;</td>		
+									<tr><td colspan="2" align="center">{$paging}</td></tr>
+									{/if}
+								</table>
+
+							</li>
+						</ul>
+					</div>
+</div>	
+{literal}
+<script language="javascript">
+function checkMail(field){
+   var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+   if (filter.test(field))
+      return true;
+   return false;
+}		
+function check_contact(form)
+{
+	if(form.fullname.value=="")
+	{
+		form.onclick = $.prompt('{/literal}{$smarty.const._ERR_NAME}{literal}');
+		form.fullname.focus();
+		return false;
+	}	
+	if(form.email.value=="")
+	{
+		form.onclick = $.prompt('{/literal}{$smarty.const._ERR_EMAIL}{literal}');
+		form.email.focus();
+		return false;
+	}		
+	if(checkMail(form.email.value)==false)
+	{
+		form.onclick = $.prompt('{/literal}{$smarty.const._ERR_EMAIL_VALUE}{literal}');
+		form.email.focus();
+		return false;
+	}	
+	if(form.description.value=="")
+	{
+		form.onclick = $.prompt('{/literal}{$smarty.const._ERR_DESCRIPTION}{literal}');
+		form.description.focus();
+		return false;
+	}
+	if(form.txt_verify_register.value=="")
+	{
+		form.onclick = $.prompt('{/literal}{$smarty.const._ERR_VERIFY}{literal}');
+		form.txt_verify_register.focus();
+		return false;
+	}
+	if(form.txt_verify_register.value!='{/literal}{$smarty.session.code_verify}{literal}'){
+		form.onclick = $.prompt('{/literal}{$smarty.const._ERR_VERIFY_DIFF}{literal}');
+		form.txt_verify_register.focus();
+		return false;
+	}
+}
+</script> 
+{/literal}

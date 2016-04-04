@@ -1,0 +1,125 @@
+<link type="text/css" href="../css/jquery.simpledialog.0.1.css" rel="stylesheet" />			
+<script type="text/javascript" src="../jscripts/jquery.simpledialog.0.1.min.js"></script>
+{literal}
+<script type="text/javascript">
+$(document).ready(function () {
+  $('.simpledialog').simpleDialog({
+  width: 600
+});
+}); 	
+function setCheckboxes(the_form, do_check)
+{
+    var elts      = (typeof(document.forms[the_form].elements['comment_del[]']) != 'undefined')
+                  ? document.forms[the_form].elements['comment_del[]']
+                  : 0;
+    var elts_cnt  = (typeof(elts.length) != 'undefined')
+                  ? elts.length
+                  : 0;
+
+    if (elts_cnt) {
+        for (var i = 0; i < elts_cnt; i++) {
+            elts[i].checked = do_check;
+        }
+    } else {
+        elts.checked = do_check;
+    }
+return true; 
+}
+function allcheck_uncheck(the_form){
+	if (document.getElementById('all').checked === true){
+		 setCheckboxes(the_form, true);
+	}
+	else
+	{
+		setCheckboxes(the_form, false);
+	}
+}
+</script>
+{/literal}
+<div id="bgwrap">		
+				<!-- Main Content -->
+				<div id="content">
+					<div id="main">
+						<h1>Thông tin nhận xét sản phẩm "{$product.Product_Name}"</h1>  
+<form name="frm_comment" method="POST">
+<input type="hidden" name="porduct_id" value="{$product.Product_ID}" />
+{if $comment_list}
+<div style="text-align:right">
+<input name="btnDelete" type="button" value="X&oacute;a" class="button" onClick="del_comment('frm_comment');" />
+<input name="btnBack" type="button" value="Về trang sản phẩm" class="button" onClick="window.location='index.php?module=product'"/>		
+  </div>
+
+<table class="fullwidth" border="0" cellpadding="0" cellspacing="0"><tbody>
+<thead><tr>
+  	<td width="21"><input type="checkbox" class="checkboxnut"name="all" id="all" onClick="allcheck_uncheck('frm_comment')"></td>     
+    <td width="" align=""><b>Họ và tên</b></td>
+    <td width="" align=""><b>Email</b></td>	
+    <td align=""><strong>Trạng thái</strong></td>
+    <td align=""><strong>Thời gian nhận xét</strong></td>
+    <td align=""><strong>Thao tác</strong></td>				
+  </tr></thead>
+  {foreach from=$comment_list item="comment_list" name="comment_list"}
+ <tr bgcolor={cycle values="#FFFFFF,#EEEEEE"}>
+ 	<td width="21" align="center"><input type="checkbox" class="checkboxnut"name="comment_del[]" value="{$comment_list.Comment_ID}" /></td>     
+    <td>{$comment_list.Full_Name}</td>
+    <td>{$comment_list.Email}</td>	
+	<td align="center">{if $comment_list.Comment_Status eq 0}Khác{elseif $comment_list.Comment_Status eq 1}Thích{elseif $comment_list.Comment_Status eq 2}Không thích{/if} </td>  	     
+	<td>{$comment_list.Create_Time_Change}</td>		
+	<td>
+	<a href="?module=comment_view&id={$comment_list.Comment_ID}" class="simpledialog">&nbsp;Xem nội dung</a>
+	</td>			
+  </tr>
+  {/foreach}
+		{if $paging}
+		<tr>
+			<td style="border:none;" colspan="6" align="center">{$paging}</td>
+		</tr>
+  		{/if}	  
+</table>
+<div style="text-align:right">
+<input name="btnDelete" type="button" value="X&oacute;a" class="button" onClick="del_comment('frm_comment');" />
+<input name="btnBack" type="button" value="Về trang sản phẩm" class="button" onClick="window.location='index.php?module=product'"/>		
+  </div>
+</form>
+{else}
+	 <div class="message information">
+	<h2>Thông báo</h2>
+	<p>Hiện tại chưa có thông tin</p>
+</div>
+			{/if}
+</div></div>
+{literal}
+<script type="text/javascript" charset="utf-8">
+function del_comment(frmName)
+{
+	var frm = document.forms[frmName];
+	var items = document.getElementsByName("comment_del[]");
+	var enable = false;
+	for (var i=0; i<items.length; i++)
+	{
+		if (items[i].checked==true)
+		{
+			enable = true;
+			break;
+		}
+	}
+		if (frm && enable)
+			{
+				$.prompt('B&#7841;n mu&#7889;n x&oacute;a thông tin n&agrave;y?',{ 
+					buttons:{Ok:true, Cancel:false},
+					callback: function(v,m){
+				
+					if(v){
+					frm.action = "?module=product&a=comment_delete";
+					frm.submit();
+					}
+					else{}
+					}
+			});
+	}
+	else
+		frm.onclick = $.prompt('B&#7841;n ch&#432;a ch&#7885;n thông tin c&#7847;n x&oacute;a!!!');		
+	return false;
+}
+</script>
+{/literal}

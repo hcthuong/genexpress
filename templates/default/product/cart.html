@@ -1,0 +1,184 @@
+{literal}
+<script language="javascript">
+function setCheckboxes(the_form, do_check)
+{
+    var elts      = (typeof(document.forms[the_form].elements['del_item[]']) != 'undefined')
+                  ? document.forms[the_form].elements['del_item[]']
+                  : 0;
+    var elts_cnt  = (typeof(elts.length) != 'undefined')
+                  ? elts.length
+                  : 0;
+
+    if (elts_cnt) {
+        for (var i = 0; i < elts_cnt; i++) {
+            elts[i].checked = do_check;
+        }
+    } else {
+        elts.checked        = do_check;
+    }
+return true; 
+}
+function allcheck_uncheck(the_form){
+	if (document.getElementById('checkall').checked === true){
+		 setCheckboxes(the_form, true);
+	}
+	else
+	{
+		setCheckboxes(the_form, false);
+	}
+}
+var r={
+  'notnumbers':/[^\d]/g
+}
+
+function valid(o,w){
+  o.value = o.value.replace(r[w],'');
+}
+</script>
+{/literal}		
+<link href="{$smarty.const.URL_HOMEPAGE}/css/examples.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{$smarty.const.URL_HOMEPAGE}/jscripts/jquery-impromptu.1.5.js"></script>
+<!-- 
+<div id="content">
+                	<div id="block">
+           	    		<h6><img align="absmiddle" src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/ico3.png" />&nbsp;&nbsp;{$smarty.const._SHOPPING_CART}									</h6>
+<ul id="news">
+							<li>
+						<table width="100%" border="0" cellspacing="0" cellpadding="0"><tbody>
+                              <form name="frm_update_cart" method="post">
+									<input name="numitem" value="{$check_cart}" type="hidden">
+                              <tr>
+                             	<td colspan="5" valign="top" align="left">
+                                              <table width="100%" border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse; border-color:#AAAAAA;">
+                                                <tr  height="27px;" id="bg_pink">                                                 
+												 <td width="15">
+												 <input  type="checkbox" name="checkall" id="checkall" onclick="allcheck_uncheck('frm_update_cart');"/></td>
+                                                  <td width="" style="text-align:center">{$smarty.const._PRODUCT_NAME}</td>
+                                                  <td width="" style="text-align:center">{$smarty.const._PRODUCT_CODE}</td>											
+                                                  <td width="" style="text-align:center">{$smarty.const._PRICE}</td>
+                                                  <td width="" style="text-align:center">{$smarty.const._AMOUNT}</td>
+                                                  <td width="" style="text-align:center">{$smarty.const._TOTAL}</td>
+                                                </tr>
+                                                 {foreach from=$incart item="incart" name="incart"}  
+                                                <tr> 
+												  <td width="15" valign="middle" align="center">
+                                                     <input type="checkbox" name="del_item[]" value="{$incart.ID}"/>
+                                                  </td>                                                                                                
+                                                  <td width="" valign="middle" id="left_pad">{$incart.Product_Name}</td>
+  												  <td width="" valign="middle" id="left_pad">{$incart.Product_Code}</td>
+                                                  <td width="" valign="middle" align="right" id="right_pad">{if $incart.Price eq 0}Call{else}{$incart.Price} VNĐ{/if}</td>
+                                                  <td width="" valign="middle" align="center"><input value="{$incart.Amount}" name="amount{$smarty.foreach.incart.iteration}" size="2" onkeyup="valid(this,'notnumbers')" onblur="valid(this,'notnumbers')" maxlength="4"/>
+												  <input type="hidden" name="Cart_ID{$smarty.foreach.incart.iteration}" value="{$incart.ID}" >
+												  </td>
+                                                  <td width="" valign="middle" align="right" id="right_pad">{if $incart.Money eq 0}Call{else}{$incart.Money} VNĐ{/if}</td>                                                  
+                                                </tr>
+                                                {/foreach}   
+                                                   
+                                                <tr height="27px;">
+                                                  
+                                                    
+                                                  <td colspan="4" align="right" valign="middle">
+                                                        <span><b>Tổng thành tiền:&nbsp;</b></span> 
+													</td>
+												 <td colspan="1" align="right" valign="middle" id="right_pad" class="dausao">
+												 <span>&nbsp;{if $total_money eq 0}Call{else}{$total_money} VNĐ{/if}</span>                                    
+                                                  </td>
+                                                </tr>																								
+                                            </table>                                     
+                                </td>
+                              </tr></form></tbody></table>  							  
+					
+					<div id="top_pad" style="text-align:center; padding-left:150px;">
+							<a onClick="recalculate('frm_update_cart');" href="#" style="text-decoration:none;"><img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/capnhat.jpg" border="0" style="vertical-align:middle;"/> </a>&nbsp;
+							<a onClick="del_cart('frm_update_cart');" href="#" style="text-decoration:none;"><img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/xoahet.jpg" border="0" style="vertical-align:middle;"/> </a>&nbsp;
+							 <a href="{$smarty.const.URL_HOMEPAGE}/product.html" style="text-decoration:none;"><img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/tieptucmuahang.jpg" border="0" style="vertical-align:middle;"/></a>&nbsp;
+							 <a href="{$smarty.const.URL_HOMEPAGE}/product/order.html" style="text-decoration:none;"><img src="{$smarty.const.URL_HOMEPAGE}/templates/{$template}/images/thanhtoan.jpg" border="0" style="vertical-align:middle;"/></a>
+					</div>
+					</div>
+                </li>
+						</ul>
+						</div>
+</div>
+-->
+<div class="product">
+				<h3><span> {$smarty.const._SHOPPING_CART} </span></h3>
+				<div class="frame_product" align="center">
+                	<table class="cart" border="1" align="center" width="80%" style="border-collapse:collapse;">
+                    	<form name="frm_update_cart" method="post">
+						<input name="numitem" value="{$check_cart}" type="hidden">
+                        <tr bgcolor="#96DCEB">
+                        	<td width="15">
+												 <input  type="checkbox" name="checkall" id="checkall" onclick="allcheck_uncheck('frm_update_cart');"/></td>
+                            <td width="" style="text-align:center"><b>{$smarty.const._PRODUCT_NAME}</b></td>
+                            <td width="" style="text-align:center"><b>{$smarty.const._PRODUCT_CODE}</b></td>											
+                            <td width="" style="text-align:center"><b>{$smarty.const._PRICE}</b></td>
+                            <td width="" style="text-align:center"><b>{$smarty.const._AMOUNT}</b></td>
+                            <td width="" style="text-align:center"><b>{$smarty.const._TOTAL}</b></td>
+                        </tr>
+                        {section name="in" loop=$inncart}
+                        <tr>
+                        	<td><input type="checkbox" name="del_item[]" value="{$inncart[in].Shopping_ID}"/></td>
+                            <td>{$inncart[in].Product_Name}</td>
+                            <td>{$inncart[in].Product_Code}</td>
+                            <td align="right">{$inncart[in].Price} {$smarty.const._CURRENCY}</td>
+                            <td align="center"><input value="{$inncart[in].Amount}" name="amount{$smarty.section.in.iteration}" size="2" onkeyup="valid(this,'notnumbers')" onblur="valid(this,'notnumbers')" maxlength="4"/>
+												  <input type="hidden" name="Cart_ID{$smarty.section.in.iteration}" value="{$inncart[in].Shopping_ID}" ></td>
+                            <td align="right">{$inncart[in].Money} {$smarty.const._CURRENCY}</td>
+                        </tr>
+                        {/section}
+                        <tr>
+                        	<td colspan="5" align="right"><b>{$smarty.const._SUM_TOTAL}</b></td>
+                            <td align="right"><b>{$total_money} {$smarty.const._CURRENCY}</b></td>
+                        </tr>
+                        </form>
+                    </table>
+                    <div class="pro2">
+                    	<a onClick="recalculate('frm_update_cart');" class="button" href="javascript:void(0);"><span>{$smarty.const._UPDATE}</span></a>
+                        <a onClick="del_cart('frm_update_cart');" class="button" href="javascript:void(1);"><span>{$smarty.const._REMOVE}</span></a>
+                        <a class="button" href="{$smarty.const.URL_HOMEPAGE}/home.html"><span>{$smarty.const._SHOPPING_GO_ON}</span></a>
+                        <a class="button" href="{$smarty.const.URL_HOMEPAGE}/product/order.html"><span>{$smarty.const._PAYBILL}</span></a>
+                    </div>
+			</div>
+		 </div><!--End #main-->
+		 <div class="bg_bottom"></div>		
+{literal}
+<script type="text/javascript" charset="utf-8">	 
+function recalculate(frmName)     	      
+{
+	var frm = document.forms[frmName];
+	frm.action = "{/literal}{$smarty.const.URL_HOMEPAGE}{literal}/product/update_cart.html";
+	frm.submit();
+}
+function del_cart(frmName)
+{
+	var frm = document.forms[frmName];
+	var items = document.getElementsByName("del_item[]");
+	var enable = false;	
+	for (var i=0; i<items.length; i++)
+	{
+		if (items[i].checked==true)
+		{
+			enable = true;
+			break;
+		}
+	}
+	if (frm && enable)
+			{
+				$.prompt('{/literal}{$smarty.const._MESS_DEL}{literal}',{ 
+					buttons:{Ok:true, Cancel:false},
+					callback: function(v,m){
+				
+					if(v){
+					frm.action = "{/literal}{$smarty.const.URL_HOMEPAGE}{literal}/product/removecart.html";
+					frm.submit();
+					}
+					else{}
+					}
+			});
+	}
+	else
+		frm.onclick = $.prompt('{/literal}{$smarty.const._MESS_CHOOSE_DEL}{literal}');		
+	return false;	
+}
+</script>
+{/literal}					

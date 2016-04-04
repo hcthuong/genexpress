@@ -1,0 +1,8 @@
+<div id="left">					
+{foreach from=$block_content name=block_content item=block_content}
+	{if $block_content.Position eq 2}
+		{assign var=temp value=$block_content.Style}			
+		{include file="$template/block/$temp" title='Block_Left' link=$block_content}
+	{/if}
+{/foreach}
+</div>
