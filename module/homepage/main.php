@@ -18,13 +18,7 @@ function homepage(){
 // Client
 function homepageclient(){
 	global $smarty, $function,$template;
-	
-	$oProduct = new Product();
-	$all_product = $oProduct->show_all_product_for_carousel();
-	//print_r($all_product);exit;
-	$hot_product = $oProduct->show_all_product_hot();
-	$smarty->assign("products", $all_product);
-	$smarty->assign("hot_product", $hot_product);
+
 	return $smarty->fetch($template."/index.html");
 }
 function closesite(){

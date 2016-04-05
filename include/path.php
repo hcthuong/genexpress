@@ -2,7 +2,7 @@
 /*======================================================== 
 Ket thuc Khai bao database - KHai bao duong dan dang web
 ========================================================*/
-define ("URL_HOMEPAGE","http://".$_SERVER["SERVER_NAME"].":8080/phuquoctaste");
+define ("URL_HOMEPAGE","http://".$_SERVER["SERVER_NAME"].":8080/genexpress");
 define ("URL_LINK", URL_HOMEPAGE."/upload/link/");
 define ("URL_LINK_THUMB", URL_HOMEPAGE."/upload/link_thumb/");
 define ("URL_PRODUCT", URL_HOMEPAGE."/upload/product/");
@@ -12,7 +12,7 @@ define ("URL_NEWS_THUMB", URL_HOMEPAGE."/upload/news_thumb/");
 /*======================================================== 
 Ket thuc Khai bao duong dan dang web - KHai bao duong dan dang vat ly
 ========================================================*/
-define ("DIRECTORY_SITE",$_SERVER['DOCUMENT_ROOT']."/phuquoctaste");
+define ("DIRECTORY_SITE",$_SERVER['DOCUMENT_ROOT']."/genexpress");
 define ("TEMPLATE_URL", DIRECTORY_SITE."/templates/");
 define ("IMG_LINK", DIRECTORY_SITE."/upload/link/");
 define ("IMG_LINK_THUMB", DIRECTORY_SITE."/upload/link_thumb/");
